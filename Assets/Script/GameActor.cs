@@ -3,6 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum eMessageType
+{
+    None,
+    Attack_FromNonPlayer,
+}
+
+public struct GameActorMessage
+{
+    public eMessageType _targetType;
+    public GameActor _targetActor;
+}
+
 public class GameActor : MonoBehaviour
 {
     public event Action<GameActor> _eventDeath = null;
@@ -55,20 +67,6 @@ public class GameActor : MonoBehaviour
         UpdateActor();	
 	}
 
-    protected void SetListerner( eMessageType type )
-    {
-        switch(type)
-        {
-            case eMessageType.Player:
-                GameManager.Instance._eventPlayer += CallbackMessage;
-                break;
-
-            case eMessageType.NonPlayer:
-                GameManager.Instance._eventNonPlayer += CallbackMessage;
-                break;
-        }
-    }
-
     virtual protected void CallbackMessage( GameMessage message ) { }
     virtual protected void CallbackDeath( GameActor target ) { }
 
@@ -79,8 +77,12 @@ public class GameActor : MonoBehaviour
         Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
     }
 
-    protected void InvokeMessage( GameMessage message )
+    protected void InvokeMessage( GameActorMessage message )
     {
-        GameManager.Instance.InvokeMessage( message );
+        GameManager.Instance.InvokeMessage( new GameMessage()
+        {
+            _invokeActor = this,
+            _gameActorMessage = message,
+        } );
     }
 }

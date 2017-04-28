@@ -13,8 +13,7 @@ public enum eGameState
 
 public class GameManager : SingletonAwake<GameManager>
 {
-    public event Action<GameMessage> _eventPlayer = null;
-    public event Action<GameMessage> _eventNonPlayer = null;
+    public event Action<GameMessage> _eventGameActor = null;
 
     [SerializeField]
     private PlayerActor _playerActor = null;
@@ -46,20 +45,9 @@ public class GameManager : SingletonAwake<GameManager>
 
     public void InvokeMessage( GameMessage message )
     {
-        switch( message._targetType )
+        if( null != _eventGameActor )
         {
-            case eMessageType.All:
-                InvokePlayerEvent( message );
-                InvokeNonPlayerEvent( message );
-                break;
-
-            case eMessageType.Player:
-                InvokePlayerEvent( message );
-                break;
-
-            case eMessageType.NonPlayer:
-                InvokeNonPlayerEvent( message );
-                break;
+            _eventGameActor( message );
         }
     }
 
@@ -87,7 +75,7 @@ public class GameManager : SingletonAwake<GameManager>
 
     private void CreateNonPlayerActor()
     {
-
+        // _eventGameActor += 
     }
 
     private void CallbackPlayerDeath( GameActor target )
@@ -97,21 +85,5 @@ public class GameManager : SingletonAwake<GameManager>
         {
             _score = _currentScore,
         } );
-    }
-
-    private void InvokePlayerEvent( GameMessage message )
-    {
-        if( null != _eventPlayer )
-        {
-            _eventPlayer( message );
-        }
-    }
-
-    private void InvokeNonPlayerEvent( GameMessage message )
-    {
-        if( null != _eventNonPlayer )
-        {
-            _eventNonPlayer( message );
-        }
     }
 }
