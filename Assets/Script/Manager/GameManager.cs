@@ -2,20 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonAwake<GameManager>
 {
-    static private GameManager _instance = null;
-    public static GameManager Instance { get { return _instance; } }
-
     public event Action<GameMessage> _eventPlayer = null;
     public event Action<GameMessage> _eventNonPlayer = null;
 
     private GameTimer _timer = new GameTimer();
 
-    private void Awake ()
+    private void Start ()
     {
-        _instance = this;
         _timer._eventTimeOver += CreateNonPlayerActor;
         _timer.RandomSelect();
     }
@@ -23,11 +20,6 @@ public class GameManager : MonoBehaviour
 	private void Update ()
     {
         _timer.CheckTime( Time.deltaTime );
-    }
-    
-    private void CreateNonPlayerActor()
-    {
-
     }
 
     public void InvokeMessage( GameMessage message )
@@ -47,6 +39,26 @@ public class GameManager : MonoBehaviour
                 InvokeNonPlayerEvent( message );
                 break;
         }
+    }
+
+    public void InvokeStart()
+    {
+
+    }
+
+    public void InvokeTitle()
+    {
+        SceneManager.LoadScene( GameConst._TITLE_SCENE, LoadSceneMode.Single );
+    }
+
+    public void InvokePause( bool enable = true )
+    {
+        Time.timeScale = enable ? 0.0f : 1.0f;
+    }
+
+    private void CreateNonPlayerActor()
+    {
+
     }
 
     private void InvokePlayerEvent( GameMessage message )
