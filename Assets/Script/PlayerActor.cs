@@ -24,5 +24,6 @@ public class PlayerActor : GameActor
 
     protected override void CallbackMessage( GameMessage message )
     {
+
     }
 }
