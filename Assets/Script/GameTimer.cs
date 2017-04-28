@@ -6,13 +6,15 @@ using UnityEngine;
 public class GameTimer
 {
     public event Action _eventTimeOver = null;
-    private float[] _times = { 10.0f, 20.0f };
+    private float[] _times = GameConst._DEFAULT_TIMES;
 
     private float _currentTime = 0;
 
     public void RandomSelect()
     {
         _currentTime = _times[ UnityEngine.Random.Range( 0, _times.Length )];
+
+        Debug.LogFormat( "Random Selected time : {0}", _currentTime );
     }
 
     public void CheckTime( float deltaTime )

@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleScene : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
+    
+	private void Start ()
+    {
+        SceneManager.LoadScene( GameConst._UI_TITLE_SCENE, LoadSceneMode.Additive );
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Update ()
+    {
 		
 	}
 }
