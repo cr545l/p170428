@@ -50,12 +50,16 @@
      <Compile Include="Assets\Script\GameConst.cs" />
      <Compile Include="Assets\Script\GameMessage.cs" />
      <Compile Include="Assets\Script\GameTimer.cs" />
+     <Compile Include="Assets\Script\Helper.cs" />
      <Compile Include="Assets\Script\Manager\GameManager.cs" />
      <Compile Include="Assets\Script\PlayerActor.cs" />
      <Compile Include="Assets\Script\Scene\Game\GameScene.cs" />
      <Compile Include="Assets\Script\Scene\Title\TitleScene.cs" />
-     <Compile Include="Assets\Script\Scene\UI\Game\UIGameScene.cs" />
-     <Compile Include="Assets\Script\Scene\UI\Title\UITitleScene.cs" />
+     <Compile Include="Assets\Script\Scene\UI\Popup\UIPopupPause.cs" />
+     <Compile Include="Assets\Script\Scene\UI\Popup\UIPopupResult.cs" />
+     <Compile Include="Assets\Script\Scene\UI\Scene\Game\UIGameScene.cs" />
+     <Compile Include="Assets\Script\Scene\UI\Scene\Title\UITitleScene.cs" />
+     <Compile Include="Assets\Script\SingletonAwake.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

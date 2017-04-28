@@ -6,6 +6,12 @@ public class PlayerActor : GameActor
 {
     private float _damage = GameConst._DEFAULT_DAMAGE;
 
+    public float Damage
+    {
+        get { return _damage; }
+        set { _damage = value; }
+    }
+
     override protected void InitActor()
     {
 

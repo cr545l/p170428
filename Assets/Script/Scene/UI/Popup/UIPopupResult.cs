@@ -23,11 +23,14 @@ public class UIPopupResult : MonoBehaviour
 
     public void ReplayButtonClick()
     {
-
+        Debug.Log( "ReplayButtonClick" );
+        GameManager.Instance.InvokeStart();
+        gameObject.SetActive( false );
     }
 
     public void ExitButtonClick()
     {
-
+        Debug.Log( "ExitButtonClick" );
+        GameManager.Instance.InvokeTitle();
     }
 }

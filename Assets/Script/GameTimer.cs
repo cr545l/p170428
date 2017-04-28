@@ -10,7 +10,15 @@ public class GameTimer
 
     private float _currentTime = 0;
 
-    public void RandomSelect()
+    public float CurrentTime { get { return _currentTime; } }
+
+    public void Init()
+    {
+        _currentTime = 0.0f;
+        RandomSelect();
+    }
+
+    private void RandomSelect()
     {
         _currentTime = _times[ UnityEngine.Random.Range( 0, _times.Length )];
 
@@ -22,6 +30,8 @@ public class GameTimer
         _currentTime -= deltaTime;
         if( _currentTime <= 0.0f )
         {
+            GameManager.Instance.PlayerActor.InvokeDamage( 1.0f );
+
             RandomSelect();
 
             if( null != _eventTimeOver )
