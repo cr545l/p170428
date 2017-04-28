@@ -1,0 +1,11 @@
+*.apk
+*.ipa
+*.unityproj
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+/Library
+/Temp
