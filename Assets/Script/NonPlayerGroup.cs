@@ -14,7 +14,8 @@ public class NonPlayerGroup : MonoBehaviour
         for(int i=1; i<children.Length; i++)
         {
             children[i].gameObject.AddComponent<CircleCollider2D>();
-            children[i].gameObject.AddComponent<NonPlayer>();
+            var nonPlayer = children[i].gameObject.AddComponent<NonPlayer>();
+            nonPlayer.Init(0.1f);
         }
     }
 	

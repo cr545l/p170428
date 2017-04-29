@@ -9,8 +9,16 @@ public class NonPlayer : GameActor {
 
 	protected override void InitActor ()
     {
+        Init( 0.1f);
+    }
+
+    public void Init(float speed )
+    {
         animator = GetComponent<Animator>();
-        animator.speed = 1.0f;
+        if( null != animator )
+        {
+            animator.speed = speed;
+        }
     }
 
     protected override void UpdateActor()
@@ -45,6 +53,6 @@ public class NonPlayer : GameActor {
 
     protected override void CallbackDeath(GameActor target)
     {
-        Destroy(target);
+        Destroy(gameObject);
     }
 }

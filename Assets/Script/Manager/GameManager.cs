@@ -22,6 +22,8 @@ public class GameManager : SingletonAwake<GameManager>
     private GameTimer _defaultTimer = new GameTimer();
     private GameTimer _randomTimer = new GameTimer();
 
+    private List<NonPlayerGroup> _nonPlayerGroupList = new List<NonPlayerGroup>();
+
     private int _currentScore = 0;
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
@@ -123,8 +125,20 @@ public class GameManager : SingletonAwake<GameManager>
             default:
                 return;
         }
+        
+        _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerGroup>() );
+    }
 
-        npg.AddComponent<NonPlayerGroup>();
+    private void ClearNonPlayer()
+    {
+        for(int i =0; i < _nonPlayerGroupList.Count; ++i )
+        {
+            if(null != _nonPlayerGroupList[i] )
+            {
+                Destroy( _nonPlayerGroupList[i].gameObject );
+            }
+        }
+        _nonPlayerGroupList.Clear();
     }
 
     private void CallbackPlayerDeath( GameActor target )
