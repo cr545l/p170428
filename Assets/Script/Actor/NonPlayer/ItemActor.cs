@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +7,50 @@ public class ItemActor : NonPlayerActor
 {
     protected override void CallbackDestroy( bool bSelf )
     {
-        if( !bSelf )
+        if (!bSelf)
         {
-            if( 0 < UnityEngine.Random.Range(0, 2) )
+            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            print(spriteRenderer.sprite.name);
+            switch (spriteRenderer.sprite.name)
             {
-                Positive();
+                case "meteorite 1":
+                    CallbackDamage();
+                    break;
+                case "meteorite 2":
+                    
+                    break;
+                case "meteorite 3":
+                    break;
+                case "meteorite 4":
+                    Negative();
+                    break;
+                case "meteorite 5":
+                    UpgradePlayerActor();
+                    break;
+                case "meteorite 6":
+                    Positive();
+                    break;
+                default:
+                    return;
             }
-            else
-            {
-                Negative();
-            }
+        }
+    }
+
+    private void UpgradePlayerActor()
+    {
+        int value = UnityEngine.Random.Range(0, 3);
+
+        switch (value)
+        {
+            case 0:
+                GameManager.Instance.PlayerActor.MaxHealthPoint++;
+                break;
+            case 1:
+                GameManager.Instance.PlayerActor.InvokeDamageUpdate();
+                break;
+            case 2:
+                GameManager.Instance.PlayerActor.InvokePowerModeDurationUpdate();
+                break;
         }
     }
 

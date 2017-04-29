@@ -34,6 +34,8 @@ public class Actor : MonoBehaviour
 
     public float Damage { get { return _damage; } protected set { _damage = value; } }
 
+    private float _powerModeDuration = GameConst._POWER_MODE_TIME;
+
     public float CurrentHealthPoint
     {
         get { return _currentHealthPoint; }
@@ -122,7 +124,7 @@ public class Actor : MonoBehaviour
 
     public void InvokePowerMode()
     {
-        _powerModeTime = GameConst._POWER_MODE_TIME;
+        _powerModeTime = _powerModeDuration;
     }
 
     public void InvokeShield()
@@ -133,6 +135,16 @@ public class Actor : MonoBehaviour
     public void InvokeHealthRecovery()
     {
         CurrentHealthPoint++;
+    }
+
+    public void InvokeDamageUpdate()
+    {
+        _damage++;
+    }
+
+    public void InvokePowerModeDurationUpdate()
+    {
+        _powerModeDuration++;
     }
 
     public void InvokeDamage( float damage )
