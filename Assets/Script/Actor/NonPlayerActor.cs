@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class NonPlayer : GameActor
+public class NonPlayerActor : Actor
 {
     private AudioSource _audioSource = null;
 
@@ -72,7 +72,7 @@ public class NonPlayer : GameActor
         
     }
 
-    protected override void CallbackDeath(GameActor target)
+    protected override void CallbackDeath(Actor target)
     {
         GameManager.Instance.InvokeShakeCamera();
 

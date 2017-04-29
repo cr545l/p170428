@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
-public class PlayerActor : GameActor
+public class PlayerActor : Actor
 {
     [SerializeField]
     private SpriteRenderer _spriteRenderer = null;
@@ -71,7 +71,7 @@ public class PlayerActor : GameActor
         }
     }
 
-    protected override void CallbackDeath( GameActor target )
+    protected override void CallbackDeath( Actor target )
     {
         _deathAnimator.gameObject.SetActive( true );
         _deathAnimator.Play( 0 );

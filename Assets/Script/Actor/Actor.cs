@@ -13,12 +13,12 @@ public enum eMessageType
 public struct GameActorMessage
 {
     public eMessageType _targetType;
-    public GameActor _targetActor;
+    public Actor _targetActor;
 }
 
-public class GameActor : MonoBehaviour
+public class Actor : MonoBehaviour
 {
-    public event Action<GameActor> _eventDeath = null;
+    public event Action<Actor> _eventDeath = null;
     private float _currentHealthPoint = 1.0f;
     private float _maxHealthPoint = 1.0f;
 
@@ -76,7 +76,7 @@ public class GameActor : MonoBehaviour
 	}
 
     virtual protected void CallbackMessage( GameMessage message ) { }
-    virtual protected void CallbackDeath( GameActor target ) { }
+    virtual protected void CallbackDeath( Actor target ) { }
     virtual protected void CallbackDamage() { }
 
     public void InvokeDamage( float damage )

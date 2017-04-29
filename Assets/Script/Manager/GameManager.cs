@@ -34,7 +34,7 @@ public class GameManager : SingletonAwake<GameManager>
     private GameTimer _defaultTimer = new GameTimer();
     private GameTimer _randomTimer = new GameTimer();
 
-    private List<NonPlayerGroup> _nonPlayerGroupList = new List<NonPlayerGroup>();
+    private List<NonPlayerActorGroup> _nonPlayerGroupList = new List<NonPlayerActorGroup>();
 
     private int _currentScore = 0;
 
@@ -148,7 +148,7 @@ public class GameManager : SingletonAwake<GameManager>
                 return;
         }
         
-        _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerGroup>() );
+        _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerActorGroup>() );
     }
 
     private void ClearNonPlayerGroup()
@@ -163,7 +163,7 @@ public class GameManager : SingletonAwake<GameManager>
         _nonPlayerGroupList.Clear();
     }
 
-    private void CallbackPlayerDeath( GameActor target )
+    private void CallbackPlayerDeath( Actor target )
     {
         _gameState = eGameState.Ended;
 

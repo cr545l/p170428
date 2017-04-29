@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonPlayerGroup : MonoBehaviour
+public class NonPlayerActorGroup : MonoBehaviour
 {
 
     private Transform[] children;
@@ -14,7 +14,7 @@ public class NonPlayerGroup : MonoBehaviour
         for(int i=1; i<children.Length; i++)
         {
             children[i].gameObject.AddComponent<CircleCollider2D>();
-            var nonPlayer = children[i].gameObject.AddComponent<NonPlayer>();
+            var nonPlayer = children[i].gameObject.AddComponent<NonPlayerActor>();
             nonPlayer.Init(0.1f);
         }
     }
