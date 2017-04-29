@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerActor : Actor
 {
     [SerializeField]
-    private Missile _missile = null;
+    private StraightMissile _missile = null;
 
     [SerializeField]
     private SpriteRenderer _spriteRenderer = null;
@@ -38,7 +38,14 @@ public class PlayerActor : Actor
 
     override protected void UpdateActor()
     {
+        if( Input.GetMouseButtonDown( 0 ) )
+        {
+            var v3 = Camera.main.ScreenPointToRay( Input.mousePosition ).GetPoint( 0 );
+            Debug.Log( v3 );
+            var missile = Instantiate( _missile, transform, false );
+            missile.Launch( v3, ( actor ) => { actor.InvokeDamage( Damage ); } );
 
+        }
     }
 
     protected override void CallbackDamage()
@@ -84,8 +91,8 @@ public class PlayerActor : Actor
         {
             case eMessageType.NonPlayerAttack_FromUser:
                 {
-                    Missile missile = Instantiate( _missile );
-                    missile.Init( message._invokeActor, ()=> { message._invokeActor.InvokeDamage( Damage ); } );
+                    //var missile = Instantiate( _missile, transform, false );
+                    //missile.Launch( message._invokeActor.transform.position, ()=> { message._invokeActor.InvokeDamage( Damage ); } );
                 }
                 break;
         }

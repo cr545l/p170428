@@ -50,4 +50,11 @@ public static class Helper
         }
         return clip;
     }
+
+    static public void LookAt2D( this Transform target, Vector3 worldPosition )
+    {
+        var dir = worldPosition - target.position;
+        var angle = Mathf.Atan2( dir.y, dir.x ) * Mathf.Rad2Deg;
+        target.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
+    }
 }

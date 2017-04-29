@@ -100,7 +100,9 @@
     <Compile Include="Assets\Script\GameTimer.cs" />
     <Compile Include="Assets\Script\Helper.cs" />
     <Compile Include="Assets\Script\Manager\GameManager.cs" />
-    <Compile Include="Assets\Script\Missile.cs" />
+    <Compile Include="Assets\Script\Missile\InduceMissile.cs" />
+    <Compile Include="Assets\Script\Missile\Missile.cs" />
+    <Compile Include="Assets\Script\Missile\StraightMissile.cs" />
     <Compile Include="Assets\Script\NonPlayerActorGroup.cs" />
     <Compile Include="Assets\Script\Scene\Game\GameScene.cs" />
     <Compile Include="Assets\Script\Scene\Title\TitleScene.cs" />

@@ -14,7 +14,7 @@ public static class GameConst
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 3.0f;
 
     public const float _DEFAULT_ACTOR_SPEED = 0.05f;
-    public const float _DEFAULT_MISSILE_TIME = 0.3f;
+    public const float _DEFAULT_MISSILE_TIME = 3f;
 
     public const float _ATTACK_SHAKE_TIME = 0.2f;
     public const float _NAGATIVE_SHAKE_TIME = 5.0f;
