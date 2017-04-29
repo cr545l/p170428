@@ -109,7 +109,7 @@ public class GameManager : SingletonAwake<GameManager>
     {
         Debug.Log( "CallbackDefaultTimeOver" );
         _defaultTimer.Init( _defaultTimer.TargetTime - GameConst._NEXT_TIME_GAP );
-        CreateDefaultpattern();
+        CreateDefaultPattern();
     }
 
     private void CallbackRandomTimeOver()
@@ -176,7 +176,7 @@ public class GameManager : SingletonAwake<GameManager>
           } ) );
     }
 
-    private void CreateDefaultpattern()
+    private void CreateDefaultPattern()
     {
         string nonPlayerPrefabURI = "";
         int rnd = UnityEngine.Random.Range(0, 0);
