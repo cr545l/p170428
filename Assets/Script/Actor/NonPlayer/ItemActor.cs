@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class ItemActor : NonPlayerActor
 {
+    protected override void InitActor()
+    {
+        MaxHealthPoint = GameConst._DEFAULT_NON_PLAYER_MAX_HEALTH_POINT;
+    }
+
     protected override void CallbackDestroy( bool bSelf )
     {
         if (!bSelf)

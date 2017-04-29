@@ -28,7 +28,10 @@ public abstract class NonPlayerActor : Actor
             animator.speed = speed;
         }
 
-        InitSelectResource( UnityEngine.Random.Range( 0, 9 ) );
+        int resourceIndex = UnityEngine.Random.Range(0, 9);
+        InitSelectResource( resourceIndex );
+        CurrentHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[resourceIndex];
+        Damage = GameConst._NONPLAYER_DAMAGE[resourceIndex];
         UIGameScene.Instance.CreateHPBar( this );
     }
 
