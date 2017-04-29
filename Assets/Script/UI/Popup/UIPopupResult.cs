@@ -31,27 +31,27 @@ public class UIPopupResult : MonoBehaviour
 
     private void VisibleRank( int score )
     {
-        if( 15000 < score )
+        if( 2500 < score )
         {
             _ranks[6].gameObject.SetActive( true );
         }
-        else if( 10000 < score )
+        else if( 1500 < score )
         {
             _ranks[5].gameObject.SetActive( true );
         }
-        else if( 5000 < score )
+        else if( 1000 < score )
         {
             _ranks[4].gameObject.SetActive( true );
         }
-        else if( 2000 < score )
+        else if( 500 < score )
         {
             _ranks[3].gameObject.SetActive( true );
         }
-        else if( 1000 < score )
+        else if( 100 < score )
         {
             _ranks[2].gameObject.SetActive( true );
         }
-        else if( 500 < score )
+        else if( -100 < score )
         {
             _ranks[1].gameObject.SetActive( true );
         }
