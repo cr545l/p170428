@@ -43,5 +43,8 @@ public class NonPlayer : GameActor {
         
     }
 
-    
+    protected override void CallbackDeath(GameActor target)
+    {
+        Destroy(target);
+    }
 }

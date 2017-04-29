@@ -83,6 +83,7 @@ public class GameManager : SingletonAwake<GameManager>
     {
         Debug.Log( "CallbackDefaultTimeOver" );
         _defaultTimer.Init( _defaultTimer.TargetTime - GameConst._NEXT_TIME_GAP );
+        CreateDefaultpattern();
     }
 
     private void CallbackRandomTimeOver()
