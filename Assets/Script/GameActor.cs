@@ -7,6 +7,7 @@ public enum eMessageType
 {
     None,
     Attack_FromNonPlayer,
+    NonPlayerAttack_FromUser,
 }
 
 public struct GameActorMessage
