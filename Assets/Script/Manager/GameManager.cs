@@ -19,17 +19,21 @@ public class GameManager : SingletonAwake<GameManager>
     private PlayerActor _playerActor = null;
 
     private eGameState _gameState = eGameState.None;
-    private GameTimer _timer = new GameTimer();
+    private GameTimer _defaultTimer = new GameTimer();
+    private GameTimer _randomTimer = new GameTimer();
+
     private int _currentScore = 0;
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
-    public GameTimer Timer { get { return _timer; } }
+    public GameTimer Timer { get { return _randomTimer; } }
 
     private void Start()
     {
         if( Helper.isNull( _playerActor ) ) return;
 
-        _timer._eventTimeOver += CreateNonPlayerActor;
+        _defaultTimer._eventTimeOver += CallbackDefaultTimeOver;
+        _randomTimer._eventTimeOver += CallbackRandomTimeOver;
+
         _playerActor._eventDeath += CallbackPlayerDeath;
 
         InvokeStart();
@@ -39,7 +43,8 @@ public class GameManager : SingletonAwake<GameManager>
     {
         if( eGameState.Playing == _gameState )
         {
-            _timer.CheckTime( Time.deltaTime );
+            _defaultTimer.CheckTime( Time.deltaTime );
+            _randomTimer.CheckTime( Time.deltaTime );
         }
     }
 
@@ -59,7 +64,8 @@ public class GameManager : SingletonAwake<GameManager>
         _playerActor.MaxHealthPoint = GameConst._DEFAULT_MAX_HEALTH_POINT;
 
         _currentScore = 0;
-        _timer.Init();
+        _defaultTimer.Init( GameConst._DEFAULT_TIME );
+        _randomTimer.InitRandom();
     }
 
     public void InvokeTitle()
@@ -71,6 +77,18 @@ public class GameManager : SingletonAwake<GameManager>
     public void InvokePause( bool enable = true )
     {
         Time.timeScale = enable ? 0.0f : 1.0f;
+    }
+
+    private void CallbackDefaultTimeOver()
+    {
+        Debug.Log( "CallbackDefaultTimeOver" );
+        _defaultTimer.Init( _defaultTimer.TargetTime - GameConst._NEXT_TIME_GAP );
+    }
+
+    private void CallbackRandomTimeOver()
+    {
+        _randomTimer.InitRandom();
+        CreateNonPlayerActor();
     }
 
     private void CreateNonPlayerActor()

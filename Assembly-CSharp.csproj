@@ -53,6 +53,7 @@
      <Compile Include="Assets\Script\Helper.cs" />
      <Compile Include="Assets\Script\Manager\GameManager.cs" />
      <Compile Include="Assets\Script\NonPlayer.cs" />
+     <Compile Include="Assets\Script\NonPlayerGroup.cs" />
      <Compile Include="Assets\Script\PlayerActor.cs" />
      <Compile Include="Assets\Script\Scene\Game\GameScene.cs" />
      <Compile Include="Assets\Script\Scene\Title\TitleScene.cs" />
