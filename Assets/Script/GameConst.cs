@@ -30,7 +30,14 @@ public static class GameConst
     public const string _TITLE_SCENE = "TitleScene";
     public const string _UI_GAME_SCENE = "UIGameScene";
     public const string _UI_TITLE_SCENE = "UITitleScene";
-    
+
+    public const string _METEORITE1 = "meteorite 1";
+    public const string _METEORITE2 = "meteorite 2";
+    public const string _METEORITE3 = "meteorite 3";
+    public const string _METEORITE4 = "meteorite 4";
+    public const string _METEORITE5 = "meteorite 5";
+    public const string _METEORITE6 = "meteorite 6";
+
     static public readonly string[] _RANDOM_MESSAGES = new string[]
     {
         "지구 헬적화 완료.",

@@ -13,21 +13,22 @@ public class ItemActor : NonPlayerActor
             print(spriteRenderer.sprite.name);
             switch (spriteRenderer.sprite.name)
             {
-                case "meteorite 1":
-                    CallbackDamage();
+                case GameConst._METEORITE1:
+                    //점수(다른 효과 없음)
                     break;
-                case "meteorite 2":
-                    
+                case GameConst._METEORITE2:
+                    //점수(다른 효과 없음)
                     break;
-                case "meteorite 3":
+                case GameConst._METEORITE3:
+                    //점수(다른 효과 없음)
                     break;
-                case "meteorite 4":
+                case GameConst._METEORITE4:
                     Negative();
                     break;
-                case "meteorite 5":
+                case GameConst._METEORITE5:
                     UpgradePlayerActor();
                     break;
-                case "meteorite 6":
+                case GameConst._METEORITE6:
                     Positive();
                     break;
                 default:
