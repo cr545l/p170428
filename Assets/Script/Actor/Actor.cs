@@ -38,7 +38,7 @@ public class Actor : MonoBehaviour
     {
         get { return _currentHealthPoint; }
 
-        private set
+        protected set
         {
             if( 0 < _shieldCount && value < _currentHealthPoint )
             {
@@ -67,7 +67,6 @@ public class Actor : MonoBehaviour
         set
         {
             _maxHealthPoint = value;
-            _currentHealthPoint = _maxHealthPoint;
 
             Debug.LogFormat( "GameActor Max Health Point {0}", _maxHealthPoint );
         }

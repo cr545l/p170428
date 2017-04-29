@@ -28,7 +28,7 @@ public abstract class NonPlayerActor : Actor
             animator.speed = speed;
         }
 
-        InitSelectResource( UnityEngine.Random.Range( 0, 6 ) );
+        InitSelectResource( UnityEngine.Random.Range( 0, 9 ) );
         UIGameScene.Instance.CreateHPBar( this );
     }
 

@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerActor : Actor
 {
     [SerializeField]
+    private Missile _missile = null;
+
+    [SerializeField]
     private SpriteRenderer _spriteRenderer = null;
 
     [SerializeField]
@@ -16,7 +19,7 @@ public class PlayerActor : Actor
 
     override protected void InitActor()
     {
-        if( Helper.isNull( _spriteRenderer, _deathAnimator ) ) return;
+        if( Helper.isNull( _missile, _spriteRenderer, _deathAnimator ) ) return;
 
         InitPlayer();
     }
@@ -30,6 +33,7 @@ public class PlayerActor : Actor
         _spriteRenderer.sprite = _sprites[0];
 
         MaxHealthPoint = GameConst._DEFAULT_PLAYER_MAX_HEALTH_POINT;
+        CurrentHealthPoint = MaxHealthPoint;
     }
 
     override protected void UpdateActor()
@@ -79,7 +83,10 @@ public class PlayerActor : Actor
         switch( message._gameActorMessage._targetType )
         {
             case eMessageType.NonPlayerAttack_FromUser:
-                message._invokeActor.InvokeDamage( Damage );
+                {
+                    Missile missile = Instantiate( _missile );
+                    missile.Init( message._invokeActor, ()=> { message._invokeActor.InvokeDamage( Damage ); } );
+                }
                 break;
         }
     }
