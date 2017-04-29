@@ -208,10 +208,9 @@ public class GameManager : SingletonAwake<GameManager>
         GameObject nonPlayerPrefab = Resources.Load<GameObject>(nonPlayerPrefabURI);
     }
 
-    public void GetScore(int gameScore)
+    public void CountScore(int gameScore)
     {
         _currentScore += gameScore;
-        UIGameScene.Instance.SetScoreText(_currentScore);
     }
 
     public int GetCombo()
