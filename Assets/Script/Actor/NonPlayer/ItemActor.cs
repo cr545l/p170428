@@ -70,7 +70,7 @@ public class ItemActor : NonPlayerActor
 
     private void Positive()
     {
-        int value = UnityEngine.Random.Range( 0, 1000 );
+        int value = UnityEngine.Random.Range( 0, 100 );
 
         if( 0 <= value && value < 15 )
         {
