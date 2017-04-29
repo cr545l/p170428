@@ -16,6 +16,9 @@ public class GameManager : SingletonAwake<GameManager>
     public event Action<GameMessage> _eventGameActor = null;
 
     [SerializeField]
+    private Camera _camera = null;
+
+    [SerializeField]
     private PlayerActor _playerActor = null;
 
     [SerializeField]
@@ -44,7 +47,7 @@ public class GameManager : SingletonAwake<GameManager>
 
     private void Start()
     {
-        if( Helper.isNull( _playerActor ) ) return;
+        if( Helper.isNull( _camera, _playerActor ) ) return;
 
         _defaultTimer._eventTimeOver += CallbackDefaultTimeOver;
         _randomTimer._eventTimeOver += CallbackRandomTimeOver;
@@ -61,6 +64,11 @@ public class GameManager : SingletonAwake<GameManager>
             _defaultTimer.CheckTime( Time.deltaTime );
             _randomTimer.CheckTime( Time.deltaTime );
         }
+    }
+
+    public void InvokeShakeCamera()
+    {
+        iTween.ShakePosition( _camera.gameObject, new Vector3( 0.3f, 0.3f, 0.3f), 0.1f );
     }
 
     public void InvokeMessage( GameMessage message )

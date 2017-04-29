@@ -74,6 +74,8 @@ public class NonPlayer : GameActor
 
     protected override void CallbackDeath(GameActor target)
     {
+        GameManager.Instance.InvokeShakeCamera();
+
         animator.speed = 0.0f;
 
         _spriteRenderer.enabled = false;

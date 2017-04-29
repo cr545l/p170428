@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{460503F8-F1A7-37E9-DC39-DA305E1ABD50}</ProjectGuid>
+    <ProjectGuid>{50127708-5C8B-A83E-4C83-AF56ADC1B8C2}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -84,28 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="p170428.Plugins.csproj">
-      <Project>{50127708-5C8B-A83E-4C83-AF56ADC1B8C2}</Project>
-      <Name>p170428.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Script\GameActor.cs" />
-    <Compile Include="Assets\Script\GameConst.cs" />
-    <Compile Include="Assets\Script\GameMessage.cs" />
-    <Compile Include="Assets\Script\GameTimer.cs" />
-    <Compile Include="Assets\Script\Helper.cs" />
-    <Compile Include="Assets\Script\Manager\GameManager.cs" />
-    <Compile Include="Assets\Script\NonPlayer.cs" />
-    <Compile Include="Assets\Script\NonPlayerGroup.cs" />
-    <Compile Include="Assets\Script\PlayerActor.cs" />
-    <Compile Include="Assets\Script\Scene\Game\GameScene.cs" />
-    <Compile Include="Assets\Script\Scene\Title\TitleScene.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Popup\UIPopupPause.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Popup\UIPopupResult.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Scene\Game\UIGameScene.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Scene\Title\UITitleScene.cs" />
-    <Compile Include="Assets\Script\SingletonAwake.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
