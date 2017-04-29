@@ -44,21 +44,22 @@ public class ItemActor : NonPlayerActor
 
     private void UpgradePlayerActor()
     {
-        int value = UnityEngine.Random.Range(0, 3);
+        //int value = UnityEngine.Random.Range(0, 3);
 
-        switch (value)
-        {
-            case 0:
-                GameManager.Instance.PlayerActor.MaxHealthPoint++;
-                GameManager.Instance.PlayerActor.InvokeHealthRecovery();
-                break;
-            case 1:
-                GameManager.Instance.PlayerActor.InvokeDamageUpdate();
-                break;
-            case 2:
-                GameManager.Instance.PlayerActor.InvokePowerModeDurationUpdate();
-                break;
-        }
+        //switch (value)
+        //{
+        //    case 0:
+        //        GameManager.Instance.PlayerActor.MaxHealthPoint++;
+        //        GameManager.Instance.PlayerActor.InvokeHealthRecovery();
+        //        break;
+        //    case 1:
+        //        GameManager.Instance.PlayerActor.InvokeDamageUpdate();
+        //        break;
+        //    case 2:
+        //        GameManager.Instance.PlayerActor.InvokePowerModeDurationUpdate();
+        //        break;
+        //}
+        UIGameScene.Instance.PopupUpdate();
     }
 
     private void Positive()

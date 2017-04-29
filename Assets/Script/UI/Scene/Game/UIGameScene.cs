@@ -29,6 +29,8 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     private UIPopupPause _uiPopupPause = null;
     [SerializeField]
     private UIPopupResult _uiPopupResult = null;
+    [SerializeField]
+    private UIPopupUpgrade _uiPopupUpgrade = null;
 
     private void Start ()
     {
@@ -36,6 +38,7 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
         _uiPopupPause.gameObject.SetActive( false );
         _uiPopupResult.gameObject.SetActive( false );
+        _uiPopupUpgrade.gameObject.SetActive( false );
     }
     
     private void Update ()
@@ -75,5 +78,11 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     public void SetScoreText(int score)
     {
         _scoreText.text = "점수 " + score;
+    }
+
+    public void PopupUpdate()
+    {
+        GameManager.Instance.InvokePause(true);
+        _uiPopupUpgrade.gameObject.SetActive(true);
     }
 }
