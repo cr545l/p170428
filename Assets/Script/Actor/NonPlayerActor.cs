@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class NonPlayerActor : Actor
 {
-    protected int _nonPlayerActorType;
+    private int _nonPlayerActorType = 0;
 
     private AudioSource _audioSource = null;
     private Animator animator = null;
@@ -13,9 +13,10 @@ public abstract class NonPlayerActor : Actor
     private Animator _deathAnimator = null;
 
     private PlayerActor _enemyTarget = null;
-
     private UIHPBar _uiHpBar = null;
-    
+
+    public int NonPlayerActorType { get { return _nonPlayerActorType; } }
+
     public void InitNonPlayer( float speed, PlayerActor enemyTarget )
     {
         Damage = GameConst._DEFAULT_NONPLAYER_DAMAGE;
@@ -32,15 +33,52 @@ public abstract class NonPlayerActor : Actor
             animator.speed = speed;
         }
 
-        _nonPlayerActorType = UnityEngine.Random.Range(0, 9);
- 
-        InitSelectResource(_nonPlayerActorType);
+        _nonPlayerActorType = RandomSelect();
+        InitSelectResource( _nonPlayerActorType );
         MaxHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[_nonPlayerActorType];
         CurrentHealthPoint = MaxHealthPoint;
         Damage = GameConst._NONPLAYER_DAMAGE[_nonPlayerActorType];
 
         _uiHpBar = UIGameScene.Instance.CreateHPBar( this );
-        _uiHpBar.gameObject.SetActive( false );
+        //_uiHpBar.gameObject.SetActive( false );
+    }
+    public bool isNagative { get { return _nonPlayerActorType == 3; } }
+
+    private int RandomSelect()
+    {
+        int select = 0;
+        int i = UnityEngine.Random.Range( 0, 100 );
+        
+        if(i < 30)
+        {
+            int j = UnityEngine.Random.Range( 0, 30 );
+            if( j < 10 )
+            {
+                // 네거티브
+                select = 3;
+            }
+            else
+            {
+                if( 0 == UnityEngine.Random.Range( 0, 2 ) )
+                {
+                    // 강화
+                    select = 4;
+                }
+                else
+                {
+                    // 아이템
+                    select = 5;
+                }
+            }
+        }
+        else
+        {
+            int[] selects = { 0, 1, 2, 6, 7, 8 };
+            int j = UnityEngine.Random.Range( 0, selects.Length );
+            select = selects[j];
+        }
+
+        return select;
     }
 
     private void InitSelectResource( int index )

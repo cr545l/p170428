@@ -51,7 +51,7 @@ public class UIPopupResult : MonoBehaviour
         {
             _ranks[2].gameObject.SetActive( true );
         }
-        else if( -100 < score )
+        else if( 0 < score )
         {
             _ranks[1].gameObject.SetActive( true );
         }
