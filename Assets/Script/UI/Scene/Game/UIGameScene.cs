@@ -36,6 +36,8 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
         _uiPopupPause.gameObject.SetActive( false );
         _uiPopupResult.gameObject.SetActive( false );
+
+        _scoreText.text = "점수 0";
     }
     
     private void Update ()
@@ -69,5 +71,10 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     public void ShowResult( ResultData resultData )
     {
         _uiPopupResult.Show( resultData );
+    }
+
+    public void SetScoreText(int score)
+    {
+        _scoreText.text = "점수 " + score;
     }
 }

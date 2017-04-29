@@ -12,15 +12,15 @@ public class ItemActor : NonPlayerActor
             switch (_nonPlayerActorType)
             {
                 case GameConst._NONPLAYER_TYPE_METEORITE1:
-                    //점수(다른 효과 없음)
-                    break;
                 case GameConst._NONPLAYER_TYPE_METEORITE2:
-                    //점수(다른 효과 없음)
-                    break;
                 case GameConst._NONPLAYER_TYPE_METEORITE3:
                     //점수(다른 효과 없음)
+                    GameManager.Instance.GetScore(GameConst._NONPLAYER_SCORE[_nonPlayerActorType] * GameManager.Instance.GetCombo());
+                    GameManager.Instance.ComboUp();
                     break;
                 case GameConst._NONPLAYER_TYPE_METEORITE4:
+                    GameManager.Instance.GetScore(GameConst._NONPLAYER_SCORE[_nonPlayerActorType]);
+                    GameManager.Instance.ResetCombo();
                     Negative();
                     break;
                 case GameConst._NONPLAYER_TYPE_METEORITE5:
@@ -30,13 +30,11 @@ public class ItemActor : NonPlayerActor
                     Positive();
                     break;
                 case GameConst._NONPLAYER_TYPE_UFO1:
-                    //점수(다른 효과 없음)
-                    break;
                 case GameConst._NONPLAYER_TYPE_UFO2:
-                    //점수(다른 효과 없음)
-                    break;
                 case GameConst._NONPLAYER_TYPE_UFO3:
                     //점수(다른 효과 없음)
+                    GameManager.Instance.GetScore(GameConst._NONPLAYER_SCORE[_nonPlayerActorType] * GameManager.Instance.GetCombo());
+                    GameManager.Instance.ComboUp();
                     break;
                 default:
                     return;
@@ -52,6 +50,7 @@ public class ItemActor : NonPlayerActor
         {
             case 0:
                 GameManager.Instance.PlayerActor.MaxHealthPoint++;
+                GameManager.Instance.PlayerActor.InvokeHealthRecovery();
                 break;
             case 1:
                 GameManager.Instance.PlayerActor.InvokeDamageUpdate();
@@ -70,16 +69,22 @@ public class ItemActor : NonPlayerActor
         {
             Debug.Log( "무적" );
             GameManager.Instance.PlayerActor.InvokePowerMode();
+            GameManager.Instance.GetScore(GameConst._NONPLAYER_SCORE[_nonPlayerActorType] * GameManager.Instance.GetCombo());
+            GameManager.Instance.ComboUp();
         }
         else if( 15 <= value && value < 40 )
         {
             Debug.Log( "쉴드추가" );
             GameManager.Instance.PlayerActor.InvokeShield();
+            GameManager.Instance.GetScore(GameConst._NONPLAYER_SCORE[_nonPlayerActorType] * GameManager.Instance.GetCombo());
+            GameManager.Instance.ComboUp();
         }
         else if( 40 <= value && value < 65 )
         {
             Debug.Log( "체력회복" );
             GameManager.Instance.PlayerActor.InvokeHealthRecovery();
+            GameManager.Instance.GetScore(GameConst._NONPLAYER_SCORE[_nonPlayerActorType] * GameManager.Instance.GetCombo());
+            GameManager.Instance.ComboUp();
         }
         else
         {
