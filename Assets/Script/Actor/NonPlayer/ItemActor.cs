@@ -7,4 +7,8 @@ public class ItemActor : NonPlayerActor
     protected override void CallbackHit( PlayerActor playerActor )
     {
     }
+
+    protected override void CallbackDestroy()
+    {
+    }
 }

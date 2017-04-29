@@ -44,7 +44,7 @@ public abstract class NonPlayerActor : Actor
     {
         if( isHit( _enemyTarget.Collider ) )
         {
-            CallbackHit( _enemyTarget );
+            InvokeHit( _enemyTarget );
         }
 
         if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
@@ -79,7 +79,15 @@ public abstract class NonPlayerActor : Actor
         InvokeDestroy();
     }
 
-    protected void InvokeDestroy()
+    private void InvokeHit( PlayerActor target )
+    {
+        target.InvokeDamage( Damage );
+        InvokeDestroy();
+
+        CallbackHit( target );
+    }
+
+    private void InvokeDestroy()
     {
         if( isAlive )
         {
@@ -104,4 +112,6 @@ public abstract class NonPlayerActor : Actor
     }
 
     abstract protected void CallbackHit( PlayerActor playerActor );
+
+    abstract protected void CallbackDestroy();
 }
