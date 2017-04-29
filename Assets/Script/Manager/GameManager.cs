@@ -46,6 +46,7 @@ public class GameManager : SingletonAwake<GameManager>
     private Coroutine _cameraCoroutine = null;
     
     private int _currentScore = 0;
+    private int _combo = 0;
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
     public GameTimer Timer { get { return _randomTimer; } }
@@ -220,8 +221,23 @@ public class GameManager : SingletonAwake<GameManager>
         GameObject nonPlayerPrefab = Resources.Load<GameObject>(nonPlayerPrefabURI);
     }
 
-    public void GetScore(int gameScore)
+    public void CountScore(int gameScore)
     {
         _currentScore += gameScore;
+    }
+
+    public int GetCombo()
+    {
+        return _combo;
+    }
+
+    public void ComboUp()
+    {
+        _combo++;
+    }
+
+    public void ResetCombo()
+    {
+        _combo = 0;
     }
 }

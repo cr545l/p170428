@@ -6,7 +6,6 @@ public static class GameConst
 {
     static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 3.0f, 4.0f };
 
-
     static public readonly float[] _NONPLAYER_HEALTH_POINT = new float[] {
         5.0f, 3.0f, 1.0f, // 빨강, 회색, 파랑
         1.0f, 3.0f, 1.0f, // 네거티브, 강화, 아이템
@@ -18,6 +17,8 @@ public static class GameConst
         0.0f, 1.0f, 1.0f,
         1.0f, 2.0f, 1.0f,
     };
+
+    static public readonly int[] _NONPLAYER_SCORE = new int[] { 30, 20, 10, -100, 0, 30, 10, 30, 30 };
 
     static public readonly Vector3 _ATTACK_SHAKE_POSITION_VECTOR = new Vector3( 0.2f, 0.2f, 0.2f );
     static public readonly Vector3 _NAGATIVE_SHAKE_POSITION_VECTOR = new Vector3( 0.5f, 0.5f, 0.5f );

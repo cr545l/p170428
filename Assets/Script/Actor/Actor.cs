@@ -66,10 +66,9 @@ public class Actor : MonoBehaviour
     {
         get { return _maxHealthPoint; }
 
-        protected set
+        set
         {
             _maxHealthPoint = value;
-            _currentHealthPoint = Mathf.Clamp( _currentHealthPoint, 0, _maxHealthPoint );
 
             Debug.LogFormat( "GameActor Max Health Point {0}", _maxHealthPoint );
         }
@@ -138,16 +137,6 @@ public class Actor : MonoBehaviour
         CurrentHealthPoint++;
     }
 
-    public void SetMaxHealthPoint( float value, bool bMaxCurrentHealthPoint )
-    {
-        MaxHealthPoint = value;
-
-        if( bMaxCurrentHealthPoint )
-        {
-            CurrentHealthPoint = MaxHealthPoint;
-        }
-    }
-
     public void InvokeDamageUpdate()
     {
         _damage++;
@@ -166,6 +155,16 @@ public class Actor : MonoBehaviour
             CurrentHealthPoint -= damage;
             CallbackDamage();
             //Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
+        }
+    }
+
+    public void SetMaxHealthPoint( float value, bool bMaxCurrentHealthPoint )
+    {
+        MaxHealthPoint = value;
+
+        if( bMaxCurrentHealthPoint )
+        {
+            CurrentHealthPoint = MaxHealthPoint;
         }
     }
 
