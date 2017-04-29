@@ -139,4 +139,13 @@ public class GameManager : SingletonAwake<GameManager>
               } );
           } ) );
     }
+
+    private void CreateDefaultpattern()
+    {
+        string nonPlayerPrefabURI = "";
+        int rnd = UnityEngine.Random.Range(0, 0);
+
+
+        GameObject nonPlayerPrefab = Resources.Load<GameObject>(nonPlayerPrefabURI);
+    }
 }
