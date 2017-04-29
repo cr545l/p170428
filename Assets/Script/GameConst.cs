@@ -17,12 +17,12 @@ public static class GameConst
 
     public const float _DEFAULT_PLAYER_DAMAGE = 1.0f;
     public const float _DEFAULT_NONPLAYER_DAMAGE = 1.0f;
-    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 1.0f;
+    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 10.0f; // 기본체력
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 5.0f;
 
     public const float _DEFAULT_ACTOR_SPEED = 0.1f;
     public const float _DEFAULT_MISSILE_TIME = 3f;
-    public const float _DEFAULT_MISSILE_SPEED = 3.0f;
+    public const float _DEFAULT_MISSILE_SPEED = 6.0f;
 
     public const float _ATTACK_SHAKE_TIME = 0.2f;
     public const float _NAGATIVE_SHAKE_TIME = 5.0f;
@@ -35,7 +35,7 @@ public static class GameConst
     public const float _DEFAULT_TIME = 0.5f;
     public const float _NEXT_TIME_GAP = 0.001f;
 
-    public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 5;
+    public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 10; // 기본 미사일 개수
 
     public const string _GAME_SCENE = "GameScene";
     public const string _TITLE_SCENE = "TitleScene";
