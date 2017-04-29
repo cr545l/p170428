@@ -64,6 +64,8 @@ public class GameManager : SingletonAwake<GameManager>
         _playerActor.MaxHealthPoint = GameConst._DEFAULT_MAX_HEALTH_POINT;
 
         _currentScore = 0;
+
+        _playerActor.Init();
         _defaultTimer.Init( GameConst._DEFAULT_TIME );
         _randomTimer.InitRandom();
     }
@@ -95,8 +97,7 @@ public class GameManager : SingletonAwake<GameManager>
     }
 
     private void CreateNonPlayerActor()
-    {
-        // _eventGameActor += 
+    { 
         int rnd = UnityEngine.Random.Range(0, 3);
         GameObject npg;
         switch (rnd)

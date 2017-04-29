@@ -26,9 +26,14 @@ public class PlayerActor : GameActor
     {
         if( Helper.isNull( _spriteRenderer, _deathAnimator ) ) return;
 
-        Debug.Log(_deathAnimator.GetClip().length);
+        Init();
+    }
+
+    public void Init()
+    {
         _deathAnimator.gameObject.SetActive( false );
         _spriteRenderer.enabled = true;
+        _spriteRenderer.sprite = _sprites[0];
     }
 
     override protected void UpdateActor()
@@ -42,21 +47,25 @@ public class PlayerActor : GameActor
 
         if( percent < 0.1f )
         {
-            _spriteRenderer.sprite = _sprites[4];
+            _spriteRenderer.sprite = _sprites[5];
         }
         else if( percent < 0.3f )
         {
-            _spriteRenderer.sprite = _sprites[3];
+            _spriteRenderer.sprite = _sprites[4];
         }
         else if( percent < 0.5f )
         {
-            _spriteRenderer.sprite = _sprites[2];
+            _spriteRenderer.sprite = _sprites[3];
         }
         else if( percent < 0.7f )
         {
-            _spriteRenderer.sprite = _sprites[1];
+            _spriteRenderer.sprite = _sprites[2];
         }
         else if( percent < 0.9f )
+        {
+            _spriteRenderer.sprite = _sprites[1];
+        }
+        else
         {
             _spriteRenderer.sprite = _sprites[0];
         }
@@ -65,8 +74,11 @@ public class PlayerActor : GameActor
     protected override void CallbackDeath( GameActor target )
     {
         _deathAnimator.gameObject.SetActive( true );
+        _deathAnimator.Play( 0 );
         _spriteRenderer.enabled = false;
-    }    protected override void CallbackMessage( GameMessage message )
+    }
+
+    protected override void CallbackMessage( GameMessage message )
     {
         message._invokeActor.InvokeDamage(_damage);
     }
