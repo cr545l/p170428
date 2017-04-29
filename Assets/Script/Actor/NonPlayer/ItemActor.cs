@@ -14,27 +14,35 @@ public class ItemActor : NonPlayerActor
     {
         if (!bSelf)
         {
-            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            print(spriteRenderer.sprite.name);
-            switch (spriteRenderer.sprite.name)
+            print("aaaaa : " + _nonPlayerActorType);
+            switch (_nonPlayerActorType)
             {
-                case GameConst._METEORITE1:
+                case GameConst._NONPLAYER_TYPE_METEORITE1:
                     //점수(다른 효과 없음)
                     break;
-                case GameConst._METEORITE2:
+                case GameConst._NONPLAYER_TYPE_METEORITE2:
                     //점수(다른 효과 없음)
                     break;
-                case GameConst._METEORITE3:
+                case GameConst._NONPLAYER_TYPE_METEORITE3:
                     //점수(다른 효과 없음)
                     break;
-                case GameConst._METEORITE4:
+                case GameConst._NONPLAYER_TYPE_METEORITE4:
                     Negative();
                     break;
-                case GameConst._METEORITE5:
+                case GameConst._NONPLAYER_TYPE_METEORITE5:
                     UpgradePlayerActor();
                     break;
-                case GameConst._METEORITE6:
+                case GameConst._NONPLAYER_TYPE_METEORITE6:
                     Positive();
+                    break;
+                case GameConst._NONPLAYER_TYPE_UFO1:
+                    //점수(다른 효과 없음)
+                    break;
+                case GameConst._NONPLAYER_TYPE_UFO2:
+                    //점수(다른 효과 없음)
+                    break;
+                case GameConst._NONPLAYER_TYPE_UFO3:
+                    //점수(다른 효과 없음)
                     break;
                 default:
                     return;

@@ -41,7 +41,7 @@ public class GameManager : SingletonAwake<GameManager>
 
     private Vector3 _cameraOriginalPosition = Vector3.zero;
     private Coroutine _cameraCoroutine = null;
-
+    
     private int _currentScore = 0;
 
     public PlayerActor PlayerActor { get { return _playerActor; } }

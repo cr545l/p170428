@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class NonPlayerActor : Actor
 {
+    protected int _nonPlayerActorType;
+
     private AudioSource _audioSource = null;
     private Animator animator = null;
     private SpriteRenderer _spriteRenderer = null;
@@ -28,10 +30,10 @@ public abstract class NonPlayerActor : Actor
             animator.speed = speed;
         }
 
-        int resourceIndex = UnityEngine.Random.Range(0, 9);
-        InitSelectResource( resourceIndex );
-        CurrentHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[resourceIndex];
-        Damage = GameConst._NONPLAYER_DAMAGE[resourceIndex];
+        _nonPlayerActorType = UnityEngine.Random.Range(0, 9);
+        InitSelectResource(_nonPlayerActorType);
+        CurrentHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[_nonPlayerActorType];
+        Damage = GameConst._NONPLAYER_DAMAGE[_nonPlayerActorType];
         UIGameScene.Instance.CreateHPBar( this );
     }
 

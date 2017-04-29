@@ -34,12 +34,15 @@ public static class GameConst
     public const string _UI_GAME_SCENE = "UIGameScene";
     public const string _UI_TITLE_SCENE = "UITitleScene";
 
-    public const string _METEORITE1 = "meteorite 1";
-    public const string _METEORITE2 = "meteorite 2";
-    public const string _METEORITE3 = "meteorite 3";
-    public const string _METEORITE4 = "meteorite 4";
-    public const string _METEORITE5 = "meteorite 5";
-    public const string _METEORITE6 = "meteorite 6";
+    public const int _NONPLAYER_TYPE_METEORITE1 = 0;
+    public const int _NONPLAYER_TYPE_METEORITE2 = 1;
+    public const int _NONPLAYER_TYPE_METEORITE3 = 2;
+    public const int _NONPLAYER_TYPE_METEORITE4 = 3;
+    public const int _NONPLAYER_TYPE_METEORITE5 = 4;
+    public const int _NONPLAYER_TYPE_METEORITE6 = 5;
+    public const int _NONPLAYER_TYPE_UFO1 = 6;
+    public const int _NONPLAYER_TYPE_UFO2 = 7;
+    public const int _NONPLAYER_TYPE_UFO3 = 8;
 
     static public readonly string[] _RANDOM_MESSAGES = new string[]
     {
