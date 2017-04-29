@@ -14,6 +14,8 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     private Text _scoreText = null;
     [SerializeField]
     private Text _timeText = null;
+    [SerializeField]
+    private UINagativeCover _uiNagativeCover = null;
 
     [SerializeField]
     private UIPopupPause _uiPopupPause = null;
@@ -22,7 +24,7 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
     private void Start ()
     {
-        if( Helper.isNull( _scoreText, _timeText, _uiPopupPause, _uiPopupResult ) ) return;
+        if( Helper.isNull( _scoreText, _timeText, _uiNagativeCover, _uiPopupPause, _uiPopupResult ) ) return;
 
         _uiPopupPause.gameObject.SetActive( false );
         _uiPopupResult.gameObject.SetActive( false );
@@ -32,6 +34,11 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     {
         _timeText.text = GameManager.Instance.Timer.CurrentTime.ToString();
 	}
+
+    public void InvokeCover( float time )
+    {
+        _uiNagativeCover.InvokeAlpha( time );
+    }
 
     public void PauseButtonClick()
     {

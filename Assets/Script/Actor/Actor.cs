@@ -143,7 +143,7 @@ public class Actor : MonoBehaviour
             //Debug.LogFormat( "InvokeDamage {0}", damage );
             CurrentHealthPoint -= damage;
             CallbackDamage();
-            //Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
+            Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
         }
     }
 

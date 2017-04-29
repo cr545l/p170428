@@ -36,6 +36,9 @@ public class GameManager : SingletonAwake<GameManager>
 
     private List<NonPlayerActorGroup> _nonPlayerGroupList = new List<NonPlayerActorGroup>();
 
+    private Vector3 _cameraOriginalPosition = Vector3.zero;
+    private Coroutine _cameraCoroutine = null;
+
     private int _currentScore = 0;
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
@@ -48,6 +51,8 @@ public class GameManager : SingletonAwake<GameManager>
     private void Start()
     {
         if( Helper.isNull( _camera, _playerActor ) ) return;
+
+        _cameraOriginalPosition = _camera.transform.position;
 
         _defaultTimer._eventTimeOver += CallbackDefaultTimeOver;
         _randomTimer._eventTimeOver += CallbackRandomTimeOver;
@@ -68,9 +73,19 @@ public class GameManager : SingletonAwake<GameManager>
 
     public void InvokeAttackShakeCamera()
     {
-        iTween.ShakePosition( _camera.gameObject, 
-            GameConst._ATTACK_SHAKE_POSITION_VECTOR, 
+        iTween.ShakePosition( _camera.gameObject,
+            GameConst._ATTACK_SHAKE_POSITION_VECTOR,
             GameConst._ATTACK_SHAKE_TIME );
+
+        if( null != _cameraCoroutine )
+        {
+            StopCoroutine( _cameraCoroutine );
+        }
+
+        _cameraCoroutine = StartCoroutine( Helper.Wait( GameConst._ATTACK_SHAKE_TIME, () =>
+        {
+            _camera.transform.position = _cameraOriginalPosition;
+        } ) );
     }
 
     public void InvokeNagativeShakeCamera()
@@ -78,6 +93,16 @@ public class GameManager : SingletonAwake<GameManager>
         iTween.ShakePosition( _camera.gameObject,
             GameConst._NAGATIVE_SHAKE_POSITION_VECTOR,
             GameConst._NAGATIVE_SHAKE_TIME );
+
+        if( null != _cameraCoroutine )
+        {
+            StopCoroutine( _cameraCoroutine );
+        }
+
+        _cameraCoroutine = StartCoroutine( Helper.Wait( GameConst._NAGATIVE_SHAKE_TIME, () =>
+        {
+            _camera.transform.position = _cameraOriginalPosition;
+        } ) );
     }
 
     public void InvokeMessage( GameMessage message )

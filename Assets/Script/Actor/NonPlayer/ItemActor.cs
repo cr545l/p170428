@@ -62,6 +62,8 @@ public class ItemActor : NonPlayerActor
                 break;
 
             case 2:
+                Debug.Log( "화면 가리기" );
+                UIGameScene.Instance.InvokeCover( GameConst._NAGATIVE_COVER_TIME );
                 break;
         }
     }

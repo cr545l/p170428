@@ -12,10 +12,13 @@ public static class GameConst
     public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 30.0f;
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 3.0f;
 
-    public const float _DEFAULT_ACTOR_SPEED = 0.1f;
+    public const float _DEFAULT_ACTOR_SPEED = 0.2f;
 
     public const float _ATTACK_SHAKE_TIME = 0.2f;
     public const float _NAGATIVE_SHAKE_TIME = 5.0f;
+
+    public const float _NAGATIVE_COVER_SPEED = 0.05f;
+    public const float _NAGATIVE_COVER_TIME = 2.0f;
 
     public const float _POWER_MODE_TIME = 2.0f;
 
@@ -29,15 +32,15 @@ public static class GameConst
     
     static public readonly string[] _RANDOM_MESSAGES = new string[]
     {
-        "테스트 문구0",
-        "테스트 문구1",
-        "테스트 문구2",
-        "테스트 문구3",
-        "테스트 문구4",
-        "테스트 문구5",
-        "테스트 문구6",
-        "테스트 문구7",
-        "테스트 문구8",
-        "테스트 문구9",
+        "지구 헬적화 완료.",
+        "역시 헬조선 출신답게 실력이…….",
+        "이 실력이니까 헬조선에서나 살지",
+        "제 평가는요! 헬지구 입니다!",
+        "지! 구! 폭! 파! 짝짝짝",
+        "넌 커서 지구를 폭파시킬 사람이야.",
+        "붐!Boom!붐! 바스틱~ 에yo~",
+        "넌 예술가야. 예술은 폭발 이랬거든.",
+        "이젠 현실도 터트릴 차롄가?",
+        "니 미래야 임마.",
     };
 }
