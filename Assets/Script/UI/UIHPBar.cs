@@ -44,8 +44,8 @@ public class UIHPBar : MonoBehaviour
 
                 _progress.transform.localScale = new Vector3( _targetActor.CurrentHealthPoint / _targetActor.MaxHealthPoint, 1, 1 );
 
-                _healthPointText.text = "H : "+_targetActor.CurrentHealthPoint +"/"+_targetActor.MaxHealthPoint;
-                _damageText.text = "D : " + _targetActor.Damage;
+                _healthPointText.text = _targetActor.CurrentHealthPoint +"/"+_targetActor.MaxHealthPoint;
+                _damageText.text = _targetActor.Damage.ToString();
             }
             else
             {

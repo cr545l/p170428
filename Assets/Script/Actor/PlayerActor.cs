@@ -17,6 +17,9 @@ public class PlayerActor : Actor
     [SerializeField]
     private Sprite[] _sprites = new Sprite[] { };
 
+    [SerializeField]
+    private AudioSource _gameOverAudioSource = null;
+
     private List<Missile> _currentMissileList = new List<Missile>();
     private float _maximumLaunchMissile = GameConst._DEFAULT_MAXIMUM_LAUNCH_MISSILE;
 
@@ -92,6 +95,7 @@ public class PlayerActor : Actor
 
     protected override void CallbackDeath( Actor target )
     {
+        _gameOverAudioSource.Play();
         MissileDestroy();
 
         iTween.MoveTo( GameManager.Instance.Camera.gameObject, 

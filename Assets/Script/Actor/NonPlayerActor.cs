@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class NonPlayerActor : Actor
 {
-    protected int _nonPlayerActorType;
+    private int nonPlayerActorType;
 
     private AudioSource _audioSource = null;
     private Animator animator = null;

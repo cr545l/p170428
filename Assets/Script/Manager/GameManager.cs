@@ -19,10 +19,7 @@ public class GameManager : SingletonAwake<GameManager>
     private ParticleSystem[] _particleSystems = null;
 
     [SerializeField]
-    private Camera _camera = null;
-
-    [SerializeField]
-    private PlayerActor _playerActor = null;
+    private ParticleSystem[] _boostParticleSystems = null;
 
     [SerializeField]
     private Sprite[] _nonPlayerSprites = null;
@@ -31,10 +28,22 @@ public class GameManager : SingletonAwake<GameManager>
     private Animator[] _nonPlayerDeathAnimators = null;
 
     [SerializeField]
-    private AudioClip _nonPlayerDeathAudioClip = null;
+    private Camera _camera = null;
 
     [SerializeField]
     private GameObject[] _pattons = null;
+
+    [SerializeField]
+    private PlayerActor _playerActor = null;
+
+    [SerializeField]
+    private AudioClip _nonPlayerDeathAudioClip = null;
+
+    [SerializeField]
+    private Light _spotLight = null;
+
+    //[SerializeField]
+    //private SpriteRenderer _background = null;
 
     private eGameState _gameState = eGameState.None;
     private GameTimer _defaultTimer = new GameTimer();
@@ -47,6 +56,7 @@ public class GameManager : SingletonAwake<GameManager>
     
     private int _currentScore = 0;
     private int _combo = 0;
+    private string _currentPatton = string.Empty;
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
     public GameTimer Timer { get { return _randomTimer; } }
@@ -55,10 +65,12 @@ public class GameManager : SingletonAwake<GameManager>
     public Animator[] NonPlayerDeathAnimators { get { return _nonPlayerDeathAnimators; } }
     public AudioClip NonPlayerDeathAudioClip { get { return _nonPlayerDeathAudioClip; } }
     public Camera Camera { get { return _camera; } }
+    public ParticleSystem[] BoostParticleSystems { get { return _boostParticleSystems; } }
+    public string CurrentPatton { get { return _currentPatton; } }
 
     private void Start()
     {
-        if( Helper.isNull( _camera, _playerActor ) ) return;
+        if( Helper.isNull( _camera, _playerActor, _nonPlayerDeathAudioClip, _spotLight ) ) return;
 
         _cameraOriginalPosition = _camera.transform.position;
 
@@ -76,6 +88,10 @@ public class GameManager : SingletonAwake<GameManager>
         {
             _defaultTimer.CheckTime( Time.deltaTime );
             _randomTimer.CheckTime( Time.deltaTime );
+
+            //float value = _playerActor.CurrentHealthPointPercent;
+            _spotLight.intensity = 50 - ( 50 * _playerActor.CurrentHealthPointPercent );
+            //_background.color = new Color( 1, value, value, 1 );
         }
     }
 
@@ -133,7 +149,6 @@ public class GameManager : SingletonAwake<GameManager>
             }
         }
 
-
         _camera.transform.position = _cameraOriginalPosition;
         _gameState = eGameState.Playing;
 
@@ -176,10 +191,11 @@ public class GameManager : SingletonAwake<GameManager>
             GameObject actorGroup = _pattons[UnityEngine.Random.Range( 0, _pattons.Length )];
             GameObject instance = Instantiate<GameObject>( actorGroup, Vector3.zero, Quaternion.identity );
             _nonPlayerGroupList.Add( instance.AddComponent<NonPlayerActorGroup>() );
+            _currentPatton = actorGroup.name;
         }
     }
 
-    public void InvokeDestroyAll()
+    public void InvokeDestroyAll( bool bNagativeDestroy )
     {
         for( int i = 0; i < _nonPlayerGroupList.Count; ++i )
         {
@@ -206,6 +222,7 @@ public class GameManager : SingletonAwake<GameManager>
         StartCoroutine( Helper.Wait( GameConst._GAME_OVER_CAMERA_MOVE_TIME + 
                                     GameConst._GAME_OVER_RESULT_POPUP, () =>
           {
+              // PlayerPrefs.SetInt(PlayerPrefsKey._HIGH_SCORE, _score);
               UIGameScene.Instance.ShowResult( new ResultData()
               {
                   _score = _currentScore,

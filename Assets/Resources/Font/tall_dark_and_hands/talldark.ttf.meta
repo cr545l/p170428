@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4d6a81adf614464449e0f57faa920f1b
+timeCreated: 1493497777
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Tall Dark And Handsome
+  fontNames:
+  - Tall Dark And Handsome
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -48,7 +48,7 @@ public static class GameConst
     public const float _DEFAULT_TIME = 0.5f;
     public const float _NEXT_TIME_GAP = 0.001f;
 
-    public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 10; // 기본 미사일 개수
+    public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 20; // 기본 미사일 개수
 
     public const string _GAME_SCENE = "GameScene";
     public const string _TITLE_SCENE = "TitleScene";
@@ -78,4 +78,10 @@ public static class GameConst
         "이젠 현실도 터트릴 차롄가?",
         "니 미래야 임마.",
     };
+}
+
+
+public static class PlayerPrefsKey
+{
+    public const string _HIGH_SCORE = "_HIGH_SCORE";
 }

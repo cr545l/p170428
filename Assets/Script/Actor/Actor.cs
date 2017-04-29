@@ -74,6 +74,11 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public float CurrentHealthPointPercent
+    {
+        get { return CurrentHealthPoint / MaxHealthPoint; }
+    }
+
     public CircleCollider2D Collider { get { return _collider; } }
 
     public bool isAlive

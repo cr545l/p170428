@@ -109,10 +109,15 @@
     <Compile Include="Assets\Script\SingletonAwake.cs" />
     <Compile Include="Assets\Script\UI\Popup\UIPopupPause.cs" />
     <Compile Include="Assets\Script\UI\Popup\UIPopupResult.cs" />
+    <Compile Include="Assets\Script\UI\Popup\UIPopupUpgrade.cs" />
     <Compile Include="Assets\Script\UI\Scene\Game\UIGameScene.cs" />
     <Compile Include="Assets\Script\UI\Scene\Title\UITitleScene.cs" />
     <Compile Include="Assets\Script\UI\UIHPBar.cs" />
     <Compile Include="Assets\Script\UI\UINagativeCover.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Resources\Font\tall_dark_and_hands\license.txt" />
+    <None Include="Assets\Resources\NewSurfaceShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -21,9 +21,13 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     [SerializeField]
     private Text _damageText = null;
     [SerializeField]
+    private Text _playingText = null;
+    [SerializeField]
     private UINagativeCover _uiNagativeCover = null;
     [SerializeField]
     private UIHPBar _uiHpBar = null;
+    [SerializeField]
+    private Image _image = null;
 
     [SerializeField]
     private UIPopupPause _uiPopupPause = null;
@@ -34,7 +38,9 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
     private void Start ()
     {
-        if( Helper.isNull( _scoreText, _timeText, _uiHpBar, _uiNagativeCover, _uiPopupPause, _uiPopupResult ) ) return;
+        if( Helper.isNull( _scoreText, _timeText, _playingText,
+            _uiHpBar, _uiNagativeCover, 
+            _uiPopupPause, _uiPopupResult, _image ) ) return;
 
         _uiPopupPause.gameObject.SetActive( false );
         _uiPopupResult.gameObject.SetActive( false );
@@ -43,10 +49,13 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     
     private void Update ()
     {
-        _timeText.text = GameManager.Instance.Timer.CurrentTime.ToString();
-        _healthPointText.text = "체력 : " + GameManager.Instance.PlayerActor.CurrentHealthPoint + "/" + GameManager.Instance.PlayerActor.MaxHealthPoint;
-        _damageText.text = "공격력 : " + GameManager.Instance.PlayerActor.Damage;
-        _scoreText.text = "점수 " + GameManager.Instance.GetScore();
+        _timeText.text = GameManager.Instance.Timer.CurrentTime.ToString("N2");
+
+        _healthPointText.text = GameManager.Instance.PlayerActor.CurrentHealthPoint.ToString();
+        _damageText.text = "POWER " + GameManager.Instance.PlayerActor.Damage;
+        _scoreText.text = "SCORE " + GameManager.Instance.GetScore();
+        _playingText.text = "PLAYING " + GameManager.Instance.CurrentPatton;
+        _image.fillAmount = GameManager.Instance.PlayerActor.CurrentHealthPoint / GameManager.Instance.PlayerActor.MaxHealthPoint;
     }
 
     public UIHPBar CreateHPBar( NonPlayerActor target )
