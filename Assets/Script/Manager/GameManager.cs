@@ -199,7 +199,11 @@ public class GameManager : SingletonAwake<GameManager>
     {
         for( int i = 0; i < _nonPlayerGroupList.Count; ++i )
         {
-            _nonPlayerGroupList[i].NonPlayerActorList.ForEach( x => x.InvokeDestroy() );
+            _nonPlayerGroupList[i].NonPlayerActorList.ForEach( (x )=> 
+            {
+                // 네거티브 타입 확인필요
+                x.InvokeDestroy();
+            } );
         }
     }
 

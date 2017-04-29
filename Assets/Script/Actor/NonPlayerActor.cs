@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class NonPlayerActor : Actor
 {
-    private int nonPlayerActorType;
+    protected int _nonPlayerActorType;
 
     private AudioSource _audioSource = null;
     private Animator animator = null;
@@ -15,7 +15,7 @@ public abstract class NonPlayerActor : Actor
     private PlayerActor _enemyTarget = null;
 
     private UIHPBar _uiHpBar = null;
-
+    
     public void InitNonPlayer( float speed, PlayerActor enemyTarget )
     {
         Damage = GameConst._DEFAULT_NONPLAYER_DAMAGE;

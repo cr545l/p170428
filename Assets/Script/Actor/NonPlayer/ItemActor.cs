@@ -90,7 +90,7 @@ public class ItemActor : NonPlayerActor
         else
         {
             Debug.Log( "폭탄" );
-            GameManager.Instance.InvokeDestroyAll();
+            GameManager.Instance.InvokeDestroyAll( false );
         }
     }
 
