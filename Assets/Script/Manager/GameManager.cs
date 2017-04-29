@@ -16,6 +16,9 @@ public class GameManager : SingletonAwake<GameManager>
     public event Action<GameMessage> _eventGameActor = null;
 
     [SerializeField]
+    private ParticleSystem[] _particleSystems = null;
+
+    [SerializeField]
     private Camera _camera = null;
 
     [SerializeField]
@@ -121,6 +124,16 @@ public class GameManager : SingletonAwake<GameManager>
     public void InvokeStart()
     {
         InvokePause( false );
+        if(null != _particleSystems )
+        {
+            for(int i =0; i < _particleSystems.Length; ++i )
+            {
+                _particleSystems[i].Simulate( 100000.0f );
+                _particleSystems[i].Play();
+            }
+        }
+
+
         _camera.transform.position = _cameraOriginalPosition;
         _gameState = eGameState.Playing;
 

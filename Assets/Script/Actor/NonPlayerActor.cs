@@ -14,6 +14,8 @@ public abstract class NonPlayerActor : Actor
 
     private PlayerActor _enemyTarget = null;
 
+    private UIHPBar _uiHpBar = null;
+
     public void InitNonPlayer( float speed, PlayerActor enemyTarget )
     {
         Damage = GameConst._DEFAULT_NONPLAYER_DAMAGE;
@@ -37,7 +39,8 @@ public abstract class NonPlayerActor : Actor
         CurrentHealthPoint = MaxHealthPoint;
         Damage = GameConst._NONPLAYER_DAMAGE[_nonPlayerActorType];
 
-        UIGameScene.Instance.CreateHPBar( this );
+        _uiHpBar = UIGameScene.Instance.CreateHPBar( this );
+        _uiHpBar.gameObject.SetActive( false );
     }
 
     private void InitSelectResource( int index )
@@ -89,6 +92,11 @@ public abstract class NonPlayerActor : Actor
     {
         InvokeDestroy();
         CallbackDestroy( false );
+    }
+
+    protected override void CallbackDamage()
+    {
+        _uiHpBar.gameObject.SetActive( true );
     }
 
     private void InvokeHit( PlayerActor target )
