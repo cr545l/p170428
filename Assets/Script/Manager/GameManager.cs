@@ -76,6 +76,33 @@ public class GameManager : SingletonAwake<GameManager>
     private void CreateNonPlayerActor()
     {
         // _eventGameActor += 
+        int rnd = UnityEngine.Random.Range(0, 3);
+        GameObject npg;
+        switch (rnd)
+        {
+            case 0:
+                npg = Instantiate<GameObject>(
+                    Resources.Load<GameObject>("Prefab/Paths/Type1"),
+                    Vector3.zero,
+                    Quaternion.identity);
+                break;
+            case 1:
+                npg = Instantiate<GameObject>(
+                    Resources.Load<GameObject>("Prefab/Paths/Type2"),
+                    Vector3.zero,
+                    Quaternion.identity);
+                break;
+            case 2:
+                npg = Instantiate<GameObject>(
+                    Resources.Load<GameObject>("Prefab/Paths/Type3"),
+                    Vector3.zero,
+                    Quaternion.identity);
+                break;
+            default:
+                return;
+        }
+
+        npg.AddComponent<NonPlayerGroup>();
     }
 
     private void CallbackPlayerDeath( GameActor target )

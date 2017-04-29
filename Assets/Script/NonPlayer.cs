@@ -11,6 +11,8 @@ public class NonPlayer : GameActor {
 	protected override void InitActor ()
     {
         animator = GetComponent<Animator>();
+        playSpeed = 0.0f;
+        animator.speed = playSpeed;
     }
 
     protected override void UpdateActor()
@@ -19,6 +21,12 @@ public class NonPlayer : GameActor {
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnMouseDown()
+    {
+        //임시로 Destroy
+        Destroy(gameObject);
     }
 
     public void PlayAnimation()
