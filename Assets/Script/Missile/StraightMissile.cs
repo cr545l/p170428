@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class StraightMissile : Missile
 {
+    private const int _OUT_SIZE = 20;
+
     private Vector3 _startPosition = Vector3.zero;
     private Vector3 _moveVector = Vector3.zero;
     protected Action<NonPlayerActor> _finished = null;
@@ -19,15 +21,32 @@ public class StraightMissile : Missile
         _moveVector = Vector3.Normalize( worldPosition - _startPosition );
         _moveVector.z = 0.0f;
 
+        _moveVector *= GameConst._DEFAULT_MISSILE_SPEED;
+
         transform.LookAt2D( worldPosition );
     }
 
-    private void Update ()
+    private void Update()
     {
         if( _bLaunch )
         {
             transform.position += _moveVector;
+
+            if( isOutDisplay() )
+            {
+                InvokeDestroy();
+            }
         }
+    }
+
+    private bool isOutDisplay()
+    {
+        Vector3 targetScreenPos = Camera.main.WorldToScreenPoint( transform.position );
+
+        return Screen.width + _OUT_SIZE < targetScreenPos.x
+                || targetScreenPos.x < -_OUT_SIZE
+                || Screen.height + _OUT_SIZE < targetScreenPos.y
+                || targetScreenPos.y < -_OUT_SIZE;
     }
 
     private void OnTriggerEnter2D( Collider2D collision )

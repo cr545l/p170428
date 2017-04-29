@@ -17,6 +17,10 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     [SerializeField]
     private Text _timeText = null;
     [SerializeField]
+    private Text _healthPointText = null;
+    [SerializeField]
+    private Text _damageText = null;
+    [SerializeField]
     private UINagativeCover _uiNagativeCover = null;
     [SerializeField]
     private UIHPBar _uiHpBar = null;
@@ -37,7 +41,9 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     private void Update ()
     {
         _timeText.text = GameManager.Instance.Timer.CurrentTime.ToString();
-	}
+        _healthPointText.text = "체력 : " + GameManager.Instance.PlayerActor.CurrentHealthPoint + "/" + GameManager.Instance.PlayerActor.MaxHealthPoint;
+        _damageText.text = "공격력 : " + GameManager.Instance.PlayerActor.Damage;
+    }
 
     public void CreateHPBar(Actor target)
     {
