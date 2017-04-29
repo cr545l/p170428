@@ -30,6 +30,9 @@ public class GameManager : SingletonAwake<GameManager>
     [SerializeField]
     private AudioClip _nonPlayerDeathAudioClip = null;
 
+    [SerializeField]
+    private GameObject[] _pattons = null;
+
     private eGameState _gameState = eGameState.None;
     private GameTimer _defaultTimer = new GameTimer();
     private GameTimer _randomTimer = new GameTimer();
@@ -153,34 +156,38 @@ public class GameManager : SingletonAwake<GameManager>
     }
 
     private void CreateNonPlayerActor()
-    { 
-        int rnd = UnityEngine.Random.Range(0, 3);
-        GameObject npg;
-        switch (rnd)
+    {
+        if( null != _pattons )
         {
-            case 0:
-                npg = Instantiate<GameObject>(
-                    Resources.Load<GameObject>("Prefab/Paths/Type1"),
-                    Vector3.zero,
-                    Quaternion.identity);
-                break;
-            case 1:
-                npg = Instantiate<GameObject>(
-                    Resources.Load<GameObject>("Prefab/Paths/Type2"),
-                    Vector3.zero,
-                    Quaternion.identity);
-                break;
-            case 2:
-                npg = Instantiate<GameObject>(
-                    Resources.Load<GameObject>("Prefab/Paths/Type3"),
-                    Vector3.zero,
-                    Quaternion.identity);
-                break;
-            default:
-                return;
+            int rnd = UnityEngine.Random.Range(0, _pattons.Length);
+            GameObject npg = Instantiate<GameObject>( _pattons[rnd],
+                        Vector3.zero,
+                        Quaternion.identity );
+            //switch( rnd )
+            //{
+            //    case 0:
+            //        npg = Instantiate<GameObject>( _pattons[rnd],
+            //            Vector3.zero,
+            //            Quaternion.identity );
+            //        break;
+            //    case 1:
+            //        npg = Instantiate<GameObject>(
+            //            Resources.Load<GameObject>( "Prefab/Paths/Type2" ),
+            //            Vector3.zero,
+            //            Quaternion.identity );
+            //        break;
+            //    case 2:
+            //        npg = Instantiate<GameObject>(
+            //            Resources.Load<GameObject>( "Prefab/Paths/Type3" ),
+            //            Vector3.zero,
+            //            Quaternion.identity );
+            //        break;
+            //    default:
+            //        return;
+            //}
+
+            _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerActorGroup>() );
         }
-        
-        _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerActorGroup>() );
     }
 
     public void InvokeDestroyAll()

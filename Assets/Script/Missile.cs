@@ -9,9 +9,8 @@ public class Missile : MonoBehaviour
     private Animator _destroyAnimation = null;
 
     private Actor _targetActor = null;
-    //private Vector3 _targetPosition = Vector3.zero;
     private Vector3 _startPosition = Vector3.zero;
-    private float _targetTime = 1.0f;
+    private float _targetTime = GameConst._DEFAULT_MISSILE_TIME;
     private float _currentTime = 0.0f;
 
     private bool _bLaunch = false;
@@ -28,7 +27,6 @@ public class Missile : MonoBehaviour
         _destroyAnimation.gameObject.SetActive( false );
 
         _targetActor = target;
-        //_targetPosition = _targetActor.transform.position;
         _startPosition = transform.position;
 
         _bLaunch = true;
@@ -41,16 +39,18 @@ public class Missile : MonoBehaviour
             _currentTime += Time.deltaTime;
 
             float percent = _currentTime / _targetTime;
-            transform.position = Vector3.LerpUnclamped( _startPosition, _targetActor.transform.position, percent );
 
-            if( 1.0f <= percent )
+            if( 1.0f <= percent || null == _targetActor )
             {
                 if( null != _finished )
                 {
                     _finished();
                 }
                 InvokeDestroy();
+                return;
             }
+
+            transform.position = Vector3.LerpUnclamped( _startPosition, _targetActor.transform.position, percent );
         }
     }
 
