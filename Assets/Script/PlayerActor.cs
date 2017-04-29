@@ -66,9 +66,8 @@ public class PlayerActor : GameActor
     {
         _deathAnimator.gameObject.SetActive( true );
         _spriteRenderer.enabled = false;
-    }
-
-    protected override void CallbackMessage( GameMessage message )
+    }    protected override void CallbackMessage( GameMessage message )
     {
+        message._invokeActor.InvokeDamage(_damage);
     }
 }
