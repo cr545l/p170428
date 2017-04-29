@@ -89,6 +89,7 @@
   <ItemGroup>
     <None Include="Assets\Resources\Font\tall_dark_and_hands\license.txt" />
     <None Include="Assets\Resources\NewSurfaceShader.shader" />
+    <None Include="Assets\Resources\Sprite\Shield\반복.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

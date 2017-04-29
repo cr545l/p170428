@@ -40,7 +40,7 @@ public abstract class NonPlayerActor : Actor
         Damage = GameConst._NONPLAYER_DAMAGE[_nonPlayerActorType];
 
         _uiHpBar = UIGameScene.Instance.CreateHPBar( this );
-        //_uiHpBar.gameObject.SetActive( false );
+        _uiHpBar.gameObject.SetActive( false );
     }
     public bool isNagative { get { return _nonPlayerActorType == 3; } }
 

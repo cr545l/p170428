@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GameConst
 {
-    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 3.0f, 4.0f };
+    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 2.0f, 2.0f, 3.0f };
 
     static public readonly float[] _NONPLAYER_HEALTH_POINT = new float[] {
         5.0f, 3.0f, 1.0f, // 빨강, 회색, 파랑
@@ -29,7 +29,7 @@ public static class GameConst
 
     public const float _DEFAULT_PLAYER_DAMAGE = 1.0f;
     public const float _DEFAULT_NONPLAYER_DAMAGE = 1.0f;
-    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 10.0f; // 기본체력
+    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 100.0f; // 기본체력
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 5.0f;
 
     public const float _DEFAULT_ACTOR_SPEED = 0.1f;
@@ -48,7 +48,7 @@ public static class GameConst
     public const float _DEFAULT_TIME = 0.5f;
     public const float _NEXT_TIME_GAP = 0.001f;
 
-    public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 20; // 기본 미사일 개수
+    public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 10; // 기본 미사일 개수
 
     public const string _GAME_SCENE = "GameScene";
     public const string _TITLE_SCENE = "TitleScene";

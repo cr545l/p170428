@@ -18,7 +18,7 @@ public class NonPlayerActorGroup : MonoBehaviour
             NonPlayerActor nonPlayerActor = null;
             
             nonPlayerActor = children[i].gameObject.AddComponent<ItemActor>();
-            //nonPlayerActor = children[i].gameObject.AddComponent<EnemyActor>();
+            //nonPlayerActor = children[i].gameObject.AddCOomponent<EnemyActor>();
 
             nonPlayerActor.InitNonPlayer( GameConst._DEFAULT_ACTOR_SPEED, GameManager.Instance.PlayerActor );
 
