@@ -90,7 +90,7 @@ public abstract class NonPlayerActor : Actor
 
     private void InvokeHit( PlayerActor target )
     {
-        Debug.Log( "InvokeHit" );
+        //Debug.Log( "InvokeHit" );
         target.InvokeDamage( Damage );
         InvokeDestroy();
         CallbackDestroy( true );

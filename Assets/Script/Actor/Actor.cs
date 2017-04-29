@@ -52,7 +52,7 @@ public class Actor : MonoBehaviour
             
             if( _currentHealthPoint <= 0.0f )
             {
-                Debug.LogFormat( "GameActor Death" );
+                //Debug.LogFormat( "GameActor Death" );
                 if( null != _eventDeath )
                 {
                     _eventDeath( this );
@@ -70,7 +70,7 @@ public class Actor : MonoBehaviour
         {
             _maxHealthPoint = value;
 
-            Debug.LogFormat( "GameActor Max Health Point {0}", _maxHealthPoint );
+            //Debug.LogFormat( "GameActor Max Health Point {0}", _maxHealthPoint );
         }
     }
 
@@ -154,7 +154,7 @@ public class Actor : MonoBehaviour
             //Debug.LogFormat( "InvokeDamage {0}", damage );
             CurrentHealthPoint -= damage;
             CallbackDamage();
-            Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
+            //Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
         }
     }
 

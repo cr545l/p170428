@@ -24,7 +24,7 @@ public class UINagativeCover : MonoBehaviour
             {
                 color.a += GameConst._NAGATIVE_COVER_SPEED;
                 _image.color = color;
-                Debug.Log( _image.color );
+                //Debug.Log( _image.color );
             }
         }
         else

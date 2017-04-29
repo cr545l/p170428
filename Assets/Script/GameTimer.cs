@@ -18,7 +18,7 @@ public class GameTimer
     {
         _currentTime = _targetTime;
         _targetTime = _times[UnityEngine.Random.Range( 0, _times.Length )];
-        Debug.LogFormat( "InitRandom {0}", _targetTime );
+        //Debug.LogFormat( "InitRandom {0}", _targetTime );
     }
 
     public void Init( float targetTime = 0.0f )
