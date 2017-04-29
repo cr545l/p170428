@@ -70,6 +70,7 @@ public class GameManager : SingletonAwake<GameManager>
         _playerActor.Init();
         _defaultTimer.Init( GameConst._DEFAULT_TIME );
         _randomTimer.InitRandom();
+        ClearNonPlayerGroup();
     }
 
     public void InvokeTitle()
@@ -129,7 +130,7 @@ public class GameManager : SingletonAwake<GameManager>
         _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerGroup>() );
     }
 
-    private void ClearNonPlayer()
+    private void ClearNonPlayerGroup()
     {
         for(int i =0; i < _nonPlayerGroupList.Count; ++i )
         {
