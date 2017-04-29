@@ -69,6 +69,7 @@ public class Actor : MonoBehaviour
         protected set
         {
             _maxHealthPoint = value;
+            _currentHealthPoint = Mathf.Clamp( _currentHealthPoint, 0, _maxHealthPoint );
 
             Debug.LogFormat( "GameActor Max Health Point {0}", _maxHealthPoint );
         }
@@ -143,7 +144,7 @@ public class Actor : MonoBehaviour
 
         if( bMaxCurrentHealthPoint )
         {
-            _currentHealthPoint = MaxHealthPoint;
+            CurrentHealthPoint = MaxHealthPoint;
         }
     }
 

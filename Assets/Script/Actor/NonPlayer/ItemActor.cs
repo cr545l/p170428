@@ -92,6 +92,7 @@ public class ItemActor : NonPlayerActor
 
     private void Negative()
     {
+        GameManager.Instance.PlayerActor.InvokeDamage( GameConst._NAGATIVE_DEFAULT_DAMAGE );
         int value = UnityEngine.Random.Range( 0, 3 );
 
         switch( value )
