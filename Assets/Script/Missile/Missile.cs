@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
+    public event Action<Missile> _eventDestroy = null;
+
     [SerializeField]
     private SpriteRenderer _spriteRenderer = null;
     [SerializeField]
@@ -21,7 +23,7 @@ public class Missile : MonoBehaviour
         if( Helper.isNull( _spriteRenderer, _destroyAnimation, _particleSystem ) ) return;
     }
 
-    protected void InvokeDestroy()
+    public void InvokeDestroy()
     {
         _bLaunch = false;
 
@@ -33,6 +35,11 @@ public class Missile : MonoBehaviour
 
         StartCoroutine( Helper.Wait( DestroyAnimation.GetClip().length, () =>
         {
+            if( null != _eventDestroy )
+            {
+                _eventDestroy(this);
+            }
+
             Destroy( gameObject );
         } ) );
     }

@@ -5,18 +5,24 @@ using UnityEngine;
 public static class GameConst
 {
     static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 3.0f, 4.0f };
-    static public readonly Vector3 _ATTACK_SHAKE_POSITION_VECTOR = new Vector3( 0.2f, 0.2f, 0.2f );
-    static public readonly Vector3 _NAGATIVE_SHAKE_POSITION_VECTOR = new Vector3( 0.5f, 0.5f, 0.5f );
     static public readonly float[] _NONPLAYER_HEALTH_POINT = new float[] { 5.0f, 3.0f, 1.0f, 1.0f, 3.0f, 1.0f, 1.0f, 1.0f, 2.0f };
     static public readonly float[] _NONPLAYER_DAMAGE = new float[] { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 2.0f, 1.0f };
 
+    static public readonly Vector3 _ATTACK_SHAKE_POSITION_VECTOR = new Vector3( 0.2f, 0.2f, 0.2f );
+    static public readonly Vector3 _NAGATIVE_SHAKE_POSITION_VECTOR = new Vector3( 0.5f, 0.5f, 0.5f );
+    static public readonly Vector3 _GAME_OVER_CAMERA_POSITION = new Vector3( 0.0f, 0.0f, -6.0f );
+
+    public const float _GAME_OVER_CAMERA_MOVE_TIME = 2.0f;
+    public const float _GAME_OVER_RESULT_POPUP = 0.2f;
+
     public const float _DEFAULT_PLAYER_DAMAGE = 1.0f;
     public const float _DEFAULT_NONPLAYER_DAMAGE = 1.0f;
-    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 30.0f;
+    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 1.0f;
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 5.0f;
 
-    public const float _DEFAULT_ACTOR_SPEED = 0.05f;
+    public const float _DEFAULT_ACTOR_SPEED = 0.1f;
     public const float _DEFAULT_MISSILE_TIME = 3f;
+    public const float _DEFAULT_MISSILE_SPEED = 3.0f;
 
     public const float _ATTACK_SHAKE_TIME = 0.2f;
     public const float _NAGATIVE_SHAKE_TIME = 5.0f;
@@ -28,6 +34,8 @@ public static class GameConst
 
     public const float _DEFAULT_TIME = 0.5f;
     public const float _NEXT_TIME_GAP = 0.001f;
+
+    public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 5;
 
     public const string _GAME_SCENE = "GameScene";
     public const string _TITLE_SCENE = "TitleScene";

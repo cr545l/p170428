@@ -50,6 +50,7 @@ public class GameManager : SingletonAwake<GameManager>
     public Sprite[] NonPlayerSprites { get { return _nonPlayerSprites; } }
     public Animator[] NonPlayerDeathAnimators { get { return _nonPlayerDeathAnimators; } }
     public AudioClip NonPlayerDeathAudioClip { get { return _nonPlayerDeathAudioClip; } }
+    public Camera Camera { get { return _camera; } }
 
     private void Start()
     {
@@ -119,6 +120,7 @@ public class GameManager : SingletonAwake<GameManager>
     public void InvokeStart()
     {
         InvokePause( false );
+        _camera.transform.position = _cameraOriginalPosition;
         _gameState = eGameState.Playing;
 
         _currentScore = 0;
@@ -149,8 +151,6 @@ public class GameManager : SingletonAwake<GameManager>
      
     private void CallbackRandomTimeOver()
     {
-        //_playerActor.InvokeDamage( 1 );
-
         _randomTimer.InitRandom();
         CreateNonPlayerActor();
     }
@@ -159,34 +159,9 @@ public class GameManager : SingletonAwake<GameManager>
     {
         if( null != _pattons )
         {
-            int rnd = UnityEngine.Random.Range(0, _pattons.Length);
-            GameObject npg = Instantiate<GameObject>( _pattons[rnd],
-                        Vector3.zero,
-                        Quaternion.identity );
-            //switch( rnd )
-            //{
-            //    case 0:
-            //        npg = Instantiate<GameObject>( _pattons[rnd],
-            //            Vector3.zero,
-            //            Quaternion.identity );
-            //        break;
-            //    case 1:
-            //        npg = Instantiate<GameObject>(
-            //            Resources.Load<GameObject>( "Prefab/Paths/Type2" ),
-            //            Vector3.zero,
-            //            Quaternion.identity );
-            //        break;
-            //    case 2:
-            //        npg = Instantiate<GameObject>(
-            //            Resources.Load<GameObject>( "Prefab/Paths/Type3" ),
-            //            Vector3.zero,
-            //            Quaternion.identity );
-            //        break;
-            //    default:
-            //        return;
-            //}
-
-            _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerActorGroup>() );
+            GameObject actorGroup = _pattons[UnityEngine.Random.Range( 0, _pattons.Length )];
+            GameObject instance = Instantiate<GameObject>( actorGroup, Vector3.zero, Quaternion.identity );
+            _nonPlayerGroupList.Add( instance.AddComponent<NonPlayerActorGroup>() );
         }
     }
 
@@ -214,7 +189,8 @@ public class GameManager : SingletonAwake<GameManager>
     {
         _gameState = eGameState.Ended;
 
-        StartCoroutine( Helper.Wait( 1, () =>
+        StartCoroutine( Helper.Wait( GameConst._GAME_OVER_CAMERA_MOVE_TIME + 
+                                    GameConst._GAME_OVER_RESULT_POPUP, () =>
           {
               UIGameScene.Instance.ShowResult( new ResultData()
               {
@@ -227,7 +203,6 @@ public class GameManager : SingletonAwake<GameManager>
     {
         string nonPlayerPrefabURI = "";
         int rnd = UnityEngine.Random.Range(0, 0);
-
 
         GameObject nonPlayerPrefab = Resources.Load<GameObject>(nonPlayerPrefabURI);
     }

@@ -17,6 +17,9 @@ public class PlayerActor : Actor
     [SerializeField]
     private Sprite[] _sprites = new Sprite[] { };
 
+    private List<Missile> _currentMissileList = new List<Missile>();
+    private float _maximumLaunchMissile = GameConst._DEFAULT_MAXIMUM_LAUNCH_MISSILE;
+
     override protected void InitActor()
     {
         if( Helper.isNull( _missile, _spriteRenderer, _deathAnimator ) ) return;
@@ -38,14 +41,19 @@ public class PlayerActor : Actor
 
     override protected void UpdateActor()
     {
-        if( Input.GetMouseButtonDown( 0 ) )
+        if( Input.GetMouseButtonDown( 0 ) && isPossibleLaunch() )
         {
-            var v3 = Camera.main.ScreenPointToRay( Input.mousePosition ).GetPoint( 0 );
-            Debug.Log( v3 );
+            Vector3 worldPosition = Camera.main.ScreenPointToRay( Input.mousePosition ).GetPoint( 0 );
             var missile = Instantiate( _missile, transform, false );
-            missile.Launch( v3, ( actor ) => { actor.InvokeDamage( Damage ); } );
-
+            _currentMissileList.Add( missile );
+            missile.Launch( worldPosition, ( actor ) => { actor.InvokeDamage( Damage ); } );
+            missile._eventDestroy += ( destroyed ) => { _currentMissileList.Remove( destroyed ); };
         }
+    }
+
+    private bool isPossibleLaunch()
+    {
+        return _currentMissileList.Count < _maximumLaunchMissile;
     }
 
     protected override void CallbackDamage()
@@ -77,12 +85,25 @@ public class PlayerActor : Actor
             _spriteRenderer.sprite = _sprites[0];
         }
     }
+    private void MissileDestroy()
+    {
+        _currentMissileList.ForEach( x => x.InvokeDestroy() );
+    }
 
     protected override void CallbackDeath( Actor target )
     {
-        _deathAnimator.gameObject.SetActive( true );
-        _deathAnimator.Play( 0 );
-        _spriteRenderer.enabled = false;
+        MissileDestroy();
+
+        iTween.MoveTo( GameManager.Instance.Camera.gameObject, 
+                        GameConst._GAME_OVER_CAMERA_POSITION,
+                        GameConst._GAME_OVER_CAMERA_MOVE_TIME );
+
+        StartCoroutine( Helper.Wait( GameConst._GAME_OVER_CAMERA_MOVE_TIME - GameConst._GAME_OVER_RESULT_POPUP, ()=>
+        {
+            _deathAnimator.gameObject.SetActive( true );
+            _deathAnimator.Play( 0 );
+            _spriteRenderer.enabled = false;
+        } ) );
     }
 
     protected override void CallbackMessage( GameMessage message )
