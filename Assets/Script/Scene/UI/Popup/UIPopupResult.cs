@@ -21,10 +21,11 @@ public class UIPopupResult : MonoBehaviour
 
     }
 
-    public void Show()
+    public void Show( ResultData resultData )
     {
         gameObject.SetActive( true );
-        _scoreText.text = GameConst._RANDOM_MESSAGES[UnityEngine.Random.Range( 0, GameConst._RANDOM_MESSAGES.Length )];
+        _messageText.text = GameConst._RANDOM_MESSAGES[UnityEngine.Random.Range( 0, GameConst._RANDOM_MESSAGES.Length )];
+        _scoreText.text = resultData._score.ToString();
     }
 
     public void ReplayButtonClick()

@@ -18,11 +18,18 @@ public struct GameActorMessage
 
 public class Actor : MonoBehaviour
 {
+    [SerializeField]
+    private CircleCollider2D _collider = null;
+
     public event Action<Actor> _eventDeath = null;
     private float _currentHealthPoint = 1.0f;
     private float _maxHealthPoint = 1.0f;
 
     private bool _bAlive = false;
+
+    private float _damage = GameConst._DEFAULT_DAMAGE;
+
+    public float Damage { get { return _damage; } }
 
     public float CurrentHealthPoint
     {
@@ -58,22 +65,46 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public CircleCollider2D Collider { get { return _collider; } }
+
+    public bool isAlive
+    {
+        get { return _bAlive; }
+
+        protected set
+        {
+            _bAlive = value;
+        }
+    }
+
     virtual protected void InitActor() { }
     virtual protected void UpdateActor() { }
 
-	private void Start ()
+    private void Start()
     {
-        InitActor();
-
-        _bAlive = true;
         GameManager.Instance._eventGameActor += CallbackMessage;
         _eventDeath += CallbackDeath;
+
+        if( null == _collider )
+        {
+            _collider = gameObject.AddComponent<CircleCollider2D>();
+        }
+        Init();
+    }
+
+    public void Init()
+    {
+        _bAlive = true;
+        InitActor();
     }
 
     private void Update()
     {
-        UpdateActor();	
-	}
+        if( _bAlive )
+        {
+            UpdateActor();
+        }
+    }
 
     virtual protected void CallbackMessage( GameMessage message ) { }
     virtual protected void CallbackDeath( Actor target ) { }
@@ -97,5 +128,19 @@ public class Actor : MonoBehaviour
             _invokeActor = this,
             _gameActorMessage = message,
         } );
+    }
+
+    public bool isHit( CircleCollider2D target )
+    {
+        if( null != target )
+        {
+            float distance = Collider.radius + target.radius;
+            if( Vector3.Distance( transform.position, target.transform.position ) <= distance )
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

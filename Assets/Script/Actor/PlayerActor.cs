@@ -14,26 +14,20 @@ public class PlayerActor : Actor
     [SerializeField]
     private Sprite[] _sprites = new Sprite[] { };
 
-    private float _damage = GameConst._DEFAULT_DAMAGE;
-
-    public float Damage
-    {
-        get { return _damage; }
-        //set { _damage = value; }
-    }
-
     override protected void InitActor()
     {
         if( Helper.isNull( _spriteRenderer, _deathAnimator ) ) return;
 
-        Init();
+        InitPlayer();
     }
 
-    public void Init()
+    public void InitPlayer()
     {
         _deathAnimator.gameObject.SetActive( false );
         _spriteRenderer.enabled = true;
         _spriteRenderer.sprite = _sprites[0];
+
+        MaxHealthPoint = GameConst._DEFAULT_PLAYER_MAX_HEALTH_POINT;
     }
 
     override protected void UpdateActor()
@@ -83,7 +77,7 @@ public class PlayerActor : Actor
         switch( message._gameActorMessage._targetType )
         {
             case eMessageType.NonPlayerAttack_FromUser:
-                message._invokeActor.InvokeDamage( _damage );
+                message._invokeActor.InvokeDamage( Damage );
                 break;
         }
     }

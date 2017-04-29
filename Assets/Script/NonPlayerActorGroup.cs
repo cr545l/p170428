@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class NonPlayerActorGroup : MonoBehaviour
 {
-
     private Transform[] children;
 
-	void Start ()
+    void Start()
     {
         children = GetComponentsInChildren<Transform>();
 
-        for(int i=1; i<children.Length; i++)
+        for( int i = 1; i < children.Length; i++ )
         {
-            children[i].gameObject.AddComponent<CircleCollider2D>();
-            var nonPlayer = children[i].gameObject.AddComponent<NonPlayerActor>();
-            nonPlayer.Init(0.1f);
+            NonPlayerActor nonPlayer = children[i].gameObject.AddComponent<EnemyActor>();
+            nonPlayer.InitNonPlayer( 0.5f, GameManager.Instance.PlayerActor );
         }
     }
-	
-	void Update ()
+
+    void Update()
     {
         bool hasChildren = false;
-        for(int i=1; i<children.Length; i++)
+        for( int i = 1; i < children.Length; i++ )
         {
-            if(children[i] != null)
+            if( children[i] != null )
             {
                 hasChildren = true;
                 break;
             }
         }
 
-        if (!hasChildren) Destroy(gameObject);
-	}
+        if( !hasChildren ) Destroy( gameObject );
+    }
 }

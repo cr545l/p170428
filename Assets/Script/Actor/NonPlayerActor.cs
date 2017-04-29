@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class NonPlayerActor : Actor
+public abstract class NonPlayerActor : Actor
 {
     private AudioSource _audioSource = null;
-
     private Animator animator = null;
     private SpriteRenderer _spriteRenderer = null;
     private Animator _deathAnimator = null;
 
-    protected override void InitActor()
+    private PlayerActor _enemyTarget = null;
+    
+    public void InitNonPlayer( float speed, PlayerActor enemyTarget )
     {
-        /*Init( 0.1f );*/
-    }
+        _enemyTarget = enemyTarget;
 
-    public void Init( float speed )
-    {
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.clip = GameManager.Instance.NonPlayerDeathAudioClip;
 
@@ -44,6 +42,11 @@ public class NonPlayerActor : Actor
 
     protected override void UpdateActor()
     {
+        if( isHit( _enemyTarget.Collider ) )
+        {
+            CallbackHit( _enemyTarget );
+        }
+
         if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             Destroy(gameObject);
@@ -69,25 +72,36 @@ public class NonPlayerActor : Actor
 
     protected override void CallbackMessage(GameMessage message)
     {
-        
     }
 
     protected override void CallbackDeath(Actor target)
     {
-        GameManager.Instance.InvokeShakeCamera();
-
-        animator.speed = 0.0f;
-
-        _spriteRenderer.enabled = false;
-
-        _deathAnimator.gameObject.SetActive( true );
-        _deathAnimator.Play( 0 );
-
-        _audioSource.Play();
-
-        StartCoroutine( Helper.Wait( _deathAnimator.GetClip().length, () =>
-        {
-            Destroy( gameObject );
-        } ) );        
+        InvokeDestroy();
     }
+
+    protected void InvokeDestroy()
+    {
+        if( isAlive )
+        {
+            isAlive = false;
+
+            GameManager.Instance.InvokeShakeCamera();
+
+            animator.speed = 0.0f;
+
+            _spriteRenderer.enabled = false;
+
+            _deathAnimator.gameObject.SetActive( true );
+            _deathAnimator.Play( 0 );
+
+            _audioSource.Play();
+
+            StartCoroutine( Helper.Wait( _deathAnimator.GetClip().length, () =>
+            {
+                Destroy( gameObject );
+            } ) );
+        }
+    }
+
+    abstract protected void CallbackHit( PlayerActor playerActor );
 }

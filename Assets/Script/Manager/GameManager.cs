@@ -84,8 +84,6 @@ public class GameManager : SingletonAwake<GameManager>
         InvokePause( false );
         _gameState = eGameState.Playing;
 
-        _playerActor.MaxHealthPoint = GameConst._DEFAULT_MAX_HEALTH_POINT;
-
         _currentScore = 0;
 
         _playerActor.Init();
