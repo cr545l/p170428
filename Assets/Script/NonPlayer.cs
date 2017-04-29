@@ -6,13 +6,11 @@ using UnityEngine;
 public class NonPlayer : GameActor {
 
     private Animator animator;
-    private float playSpeed;
 
 	protected override void InitActor ()
     {
         animator = GetComponent<Animator>();
-        playSpeed = 0.0f;
-        animator.speed = playSpeed;
+        animator.speed = 1.0f;
     }
 
     protected override void UpdateActor()
@@ -25,18 +23,14 @@ public class NonPlayer : GameActor {
 
     private void OnMouseDown()
     {
-        //임시로 Destroy
-        Destroy(gameObject);
-    }
-
-    public void PlayAnimation()
-    {
-        animator.speed = playSpeed;
+        InvokeMessage(new GameActorMessage {
+            _targetType = eMessageType.NonPlayerAttack_FromUser,
+            _targetActor = null});
     }
 
     public void SetPlaySpeed(float speed)
     {
-        playSpeed = speed;
+        animator.speed = speed;
     }
 
     public void SetAnimatorController(RuntimeAnimatorController controller)
