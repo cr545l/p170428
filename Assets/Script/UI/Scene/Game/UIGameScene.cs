@@ -11,11 +11,15 @@ public struct ResultData
 public class UIGameScene : SingletonAwake<UIGameScene>
 {
     [SerializeField]
+    private Canvas _canvas = null;
+    [SerializeField]
     private Text _scoreText = null;
     [SerializeField]
     private Text _timeText = null;
     [SerializeField]
     private UINagativeCover _uiNagativeCover = null;
+    [SerializeField]
+    private UIHPBar _uiHpBar = null;
 
     [SerializeField]
     private UIPopupPause _uiPopupPause = null;
@@ -24,7 +28,7 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
     private void Start ()
     {
-        if( Helper.isNull( _scoreText, _timeText, _uiNagativeCover, _uiPopupPause, _uiPopupResult ) ) return;
+        if( Helper.isNull( _scoreText, _timeText, _uiHpBar, _uiNagativeCover, _uiPopupPause, _uiPopupResult ) ) return;
 
         _uiPopupPause.gameObject.SetActive( false );
         _uiPopupResult.gameObject.SetActive( false );
@@ -34,6 +38,15 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     {
         _timeText.text = GameManager.Instance.Timer.CurrentTime.ToString();
 	}
+
+    public void CreateHPBar(Actor target)
+    {
+        //UIHPBar instance = Instantiate( _uiHpBar );
+        //instance.transform.SetParent( _canvas.transform, false );
+        //instance.transform.SetSiblingIndex( 0 );
+        //
+        //instance.Init( target, _canvas );
+    }
 
     public void InvokeCover( float time )
     {

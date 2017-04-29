@@ -14,6 +14,8 @@ public abstract class NonPlayerActor : Actor
 
     public void InitNonPlayer( float speed, PlayerActor enemyTarget )
     {
+        Damage = GameConst._DEFAULT_NONPLAYER_DAMAGE;
+
         _enemyTarget = enemyTarget;
 
         _audioSource = gameObject.AddComponent<AudioSource>();
@@ -26,7 +28,8 @@ public abstract class NonPlayerActor : Actor
             animator.speed = speed;
         }
 
-        InitSelectResource( UnityEngine.Random.Range( 0, 3 ) );
+        InitSelectResource( UnityEngine.Random.Range( 0, 6 ) );
+        UIGameScene.Instance.CreateHPBar( this );
     }
 
     private void InitSelectResource( int index )

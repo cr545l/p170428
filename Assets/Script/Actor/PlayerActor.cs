@@ -23,6 +23,8 @@ public class PlayerActor : Actor
 
     public void InitPlayer()
     {
+        Damage = GameConst._DEFAULT_PLAYER_DAMAGE;
+
         _deathAnimator.gameObject.SetActive( false );
         _spriteRenderer.enabled = true;
         _spriteRenderer.sprite = _sprites[0];

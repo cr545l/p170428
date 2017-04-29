@@ -30,9 +30,9 @@ public class Actor : MonoBehaviour
 
     private float _powerModeTime = 0.0f;
 
-    private float _damage = GameConst._DEFAULT_DAMAGE;
+    private float _damage = 0.0f;
 
-    public float Damage { get { return _damage; } }
+    public float Damage { get { return _damage; } protected set { _damage = value; } }
 
     public float CurrentHealthPoint
     {
