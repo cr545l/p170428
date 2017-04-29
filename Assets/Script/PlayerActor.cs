@@ -80,6 +80,11 @@ public class PlayerActor : GameActor
 
     protected override void CallbackMessage( GameMessage message )
     {
-        message._invokeActor.InvokeDamage(_damage);
+        switch( message._gameActorMessage._targetType )
+        {
+            case eMessageType.NonPlayerAttack_FromUser:
+                message._invokeActor.InvokeDamage( _damage );
+                break;
+        }
     }
 }
