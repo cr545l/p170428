@@ -22,16 +22,20 @@ public class GameActor : MonoBehaviour
     private float _currentHealthPoint = 1.0f;
     private float _maxHealthPoint = 1.0f;
 
+    private bool _bAlive = false;
+
     public float CurrentHealthPoint
     {
         get { return _currentHealthPoint; }
 
         private set
         {
+            float temp = _currentHealthPoint;
             _currentHealthPoint = value;
-
+            
             if( _currentHealthPoint <= 0.0f )
             {
+                _bAlive = false;
                 Debug.LogFormat( "GameActor Death" );
                 if( null != _eventDeath )
                 {
@@ -60,6 +64,8 @@ public class GameActor : MonoBehaviour
 	private void Start ()
     {
         InitActor();
+
+        _bAlive = true;
         GameManager.Instance._eventGameActor += CallbackMessage;
         _eventDeath += CallbackDeath;
     }
@@ -75,10 +81,13 @@ public class GameActor : MonoBehaviour
 
     public void InvokeDamage( float damage )
     {
-        Debug.LogFormat( "InvokeDamage {0}", damage );
-        CurrentHealthPoint -= damage;
-        CallbackDamage();
-        Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
+        if( _bAlive )
+        {
+            Debug.LogFormat( "InvokeDamage {0}", damage );
+            CurrentHealthPoint -= damage;
+            CallbackDamage();
+            Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
+        }
     }
 
     protected void InvokeMessage( GameActorMessage message )

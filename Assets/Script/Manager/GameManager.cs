@@ -18,6 +18,15 @@ public class GameManager : SingletonAwake<GameManager>
     [SerializeField]
     private PlayerActor _playerActor = null;
 
+    [SerializeField]
+    private Sprite[] _nonPlayerSprites = null;
+
+    [SerializeField]
+    private Animator[] _nonPlayerDeathAnimators = null;
+
+    [SerializeField]
+    private AudioClip _nonPlayerDeathAudioClip = null;
+
     private eGameState _gameState = eGameState.None;
     private GameTimer _defaultTimer = new GameTimer();
     private GameTimer _randomTimer = new GameTimer();
@@ -28,6 +37,10 @@ public class GameManager : SingletonAwake<GameManager>
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
     public GameTimer Timer { get { return _randomTimer; } }
+
+    public Sprite[] NonPlayerSprites { get { return _nonPlayerSprites; } }
+    public Animator[] NonPlayerDeathAnimators { get { return _nonPlayerDeathAnimators; } }
+    public AudioClip NonPlayerDeathAudioClip { get { return _nonPlayerDeathAudioClip; } }
 
     private void Start()
     {
@@ -93,7 +106,7 @@ public class GameManager : SingletonAwake<GameManager>
 
     private void CallbackRandomTimeOver()
     {
-        _playerActor.InvokeDamage( 1 );
+        //_playerActor.InvokeDamage( 1 );
 
         _randomTimer.InitRandom();
         CreateNonPlayerActor();
