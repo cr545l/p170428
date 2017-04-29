@@ -29,7 +29,7 @@ public static class GameConst
 
     public const float _DEFAULT_PLAYER_DAMAGE = 1.0f;
     public const float _DEFAULT_NONPLAYER_DAMAGE = 1.0f;
-    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 100.0f; // 기본체력
+    public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 10.0f; // 기본체력
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 5.0f;
 
     public const float _DEFAULT_ACTOR_SPEED = 0.1f;
