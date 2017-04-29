@@ -206,4 +206,9 @@ public class GameManager : SingletonAwake<GameManager>
 
         GameObject nonPlayerPrefab = Resources.Load<GameObject>(nonPlayerPrefabURI);
     }
+
+    public void GetScore(int gameScore)
+    {
+        _currentScore += gameScore;
+    }
 }

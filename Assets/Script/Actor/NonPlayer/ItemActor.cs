@@ -14,7 +14,6 @@ public class ItemActor : NonPlayerActor
     {
         if (!bSelf)
         {
-            print("aaaaa : " + _nonPlayerActorType);
             switch (_nonPlayerActorType)
             {
                 case GameConst._NONPLAYER_TYPE_METEORITE1:
