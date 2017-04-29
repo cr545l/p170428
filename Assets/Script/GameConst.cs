@@ -4,11 +4,21 @@ using UnityEngine;
 
 public static class GameConst
 {
+    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 3.0f, 4.0f };
+    static public readonly Vector3 _ATTACK_SHAKE_POSITION_VECTOR = new Vector3( 0.2f, 0.2f, 0.2f );
+    static public readonly Vector3 _NAGATIVE_SHAKE_POSITION_VECTOR = new Vector3( 0.5f, 0.5f, 0.5f );
+
     public const float _DEFAULT_DAMAGE = 1.0f;
     public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 30.0f;
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 3.0f;
 
-    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 3.0f, 4.0f };
+    public const float _DEFAULT_ACTOR_SPEED = 0.1f;
+
+    public const float _ATTACK_SHAKE_TIME = 0.2f;
+    public const float _NAGATIVE_SHAKE_TIME = 5.0f;
+
+    public const float _POWER_MODE_TIME = 2.0f;
+
     public const float _DEFAULT_TIME = 0.5f;
     public const float _NEXT_TIME_GAP = 0.001f;
 

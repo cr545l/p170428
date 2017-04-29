@@ -4,11 +4,4 @@ using UnityEngine;
 
 public class EnemyActor : NonPlayerActor
 {
-    protected override void CallbackHit( PlayerActor playerActor )
-    {
-    }
-
-    protected override void CallbackDestroy()
-    {
-    }
 }

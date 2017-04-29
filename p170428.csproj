@@ -95,6 +95,7 @@
     <Compile Include="Assets\Script\Actor\NonPlayer\ItemActor.cs" />
     <Compile Include="Assets\Script\Actor\NonPlayerActor.cs" />
     <Compile Include="Assets\Script\Actor\PlayerActor.cs" />
+    <Compile Include="Assets\Script\Actor\StatData.cs" />
     <Compile Include="Assets\Script\GameConst.cs" />
     <Compile Include="Assets\Script\GameMessage.cs" />
     <Compile Include="Assets\Script\GameTimer.cs" />
@@ -103,11 +104,11 @@
     <Compile Include="Assets\Script\NonPlayerActorGroup.cs" />
     <Compile Include="Assets\Script\Scene\Game\GameScene.cs" />
     <Compile Include="Assets\Script\Scene\Title\TitleScene.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Popup\UIPopupPause.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Popup\UIPopupResult.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Scene\Game\UIGameScene.cs" />
-    <Compile Include="Assets\Script\Scene\UI\Scene\Title\UITitleScene.cs" />
     <Compile Include="Assets\Script\SingletonAwake.cs" />
+    <Compile Include="Assets\Script\UI\Popup\UIPopupPause.cs" />
+    <Compile Include="Assets\Script\UI\Popup\UIPopupResult.cs" />
+    <Compile Include="Assets\Script\UI\Scene\Game\UIGameScene.cs" />
+    <Compile Include="Assets\Script\UI\Scene\Title\UITitleScene.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

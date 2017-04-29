@@ -11,7 +11,7 @@ public abstract class NonPlayerActor : Actor
     private Animator _deathAnimator = null;
 
     private PlayerActor _enemyTarget = null;
-    
+
     public void InitNonPlayer( float speed, PlayerActor enemyTarget )
     {
         _enemyTarget = enemyTarget;
@@ -47,53 +47,56 @@ public abstract class NonPlayerActor : Actor
             InvokeHit( _enemyTarget );
         }
 
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        if( animator.GetCurrentAnimatorStateInfo( 0 ).normalizedTime >= 1 )
         {
-            Destroy(gameObject);
+            Destroy( gameObject );
         }
     }
 
     private void OnMouseDown()
     {
-        InvokeMessage(new GameActorMessage {
+        InvokeMessage( new GameActorMessage {
             _targetType = eMessageType.NonPlayerAttack_FromUser,
-            _targetActor = null});
+            _targetActor = null } );
     }
 
-    public void SetPlaySpeed(float speed)
+    public void SetPlaySpeed( float speed )
     {
         animator.speed = speed;
     }
 
-    public void SetAnimatorController(RuntimeAnimatorController controller)
+    public void SetAnimatorController( RuntimeAnimatorController controller )
     {
         animator.runtimeAnimatorController = controller;
     }
 
-    protected override void CallbackMessage(GameMessage message)
+    protected override void CallbackMessage( GameMessage message )
     {
     }
 
-    protected override void CallbackDeath(Actor target)
+    protected override void CallbackDeath( Actor target )
     {
         InvokeDestroy();
+        CallbackDestroy( false );
     }
 
     private void InvokeHit( PlayerActor target )
     {
+        Debug.Log( "InvokeHit" );
         target.InvokeDamage( Damage );
         InvokeDestroy();
+        CallbackDestroy( true );
 
         CallbackHit( target );
     }
 
-    private void InvokeDestroy()
+    public void InvokeDestroy()
     {
         if( isAlive )
         {
             isAlive = false;
 
-            GameManager.Instance.InvokeShakeCamera();
+            GameManager.Instance.InvokeAttackShakeCamera();
 
             animator.speed = 0.0f;
 
@@ -111,7 +114,7 @@ public abstract class NonPlayerActor : Actor
         }
     }
 
-    abstract protected void CallbackHit( PlayerActor playerActor );
+    virtual protected void CallbackHit( PlayerActor playerActor ) { }
 
-    abstract protected void CallbackDestroy();
+    virtual protected void CallbackDestroy( bool bSelf ) { }
 }

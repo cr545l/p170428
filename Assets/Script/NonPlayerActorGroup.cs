@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class NonPlayerActorGroup : MonoBehaviour
 {
+    private List<NonPlayerActor> _nonPlayerActorList = new List<NonPlayerActor>();
     private Transform[] children;
+
+    public List<NonPlayerActor> NonPlayerActorList { get { return _nonPlayerActorList; } }
 
     void Start()
     {
@@ -12,8 +15,14 @@ public class NonPlayerActorGroup : MonoBehaviour
 
         for( int i = 1; i < children.Length; i++ )
         {
-            NonPlayerActor nonPlayer = children[i].gameObject.AddComponent<EnemyActor>();
-            nonPlayer.InitNonPlayer( 0.5f, GameManager.Instance.PlayerActor );
+            NonPlayerActor nonPlayerActor = null;
+            
+            nonPlayerActor = children[i].gameObject.AddComponent<ItemActor>();
+            //nonPlayerActor = children[i].gameObject.AddComponent<EnemyActor>();
+
+            nonPlayerActor.InitNonPlayer( GameConst._DEFAULT_ACTOR_SPEED, GameManager.Instance.PlayerActor );
+
+            _nonPlayerActorList.Add( nonPlayerActor );
         }
     }
 

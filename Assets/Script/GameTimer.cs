@@ -25,7 +25,7 @@ public class GameTimer
     {
         _targetTime = targetTime;
         _currentTime = _targetTime;
-        Debug.LogFormat( "Init {0}", _targetTime );
+        //Debug.LogFormat( "Init {0}", _targetTime );
     }
 
     public void CheckTime( float deltaTime )
@@ -33,7 +33,7 @@ public class GameTimer
         _currentTime -= deltaTime;
         if( _currentTime <= 0.0f )
         {
-            Debug.LogFormat( "CheckTime Over {0}", _targetTime );
+            //Debug.LogFormat( "CheckTime Over {0}", _targetTime );
             
             if( null != _eventTimeOver )
             {

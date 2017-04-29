@@ -25,7 +25,10 @@ public class Actor : MonoBehaviour
     private float _currentHealthPoint = 1.0f;
     private float _maxHealthPoint = 1.0f;
 
+    private int _shieldCount = 0;
     private bool _bAlive = false;
+
+    private float _powerModeTime = 0.0f;
 
     private float _damage = GameConst._DEFAULT_DAMAGE;
 
@@ -37,17 +40,22 @@ public class Actor : MonoBehaviour
 
         private set
         {
-            float temp = _currentHealthPoint;
-            _currentHealthPoint = value;
+            if( 0 < _shieldCount && value < _currentHealthPoint )
+            {
+                _shieldCount--;
+                return;
+            }
+
+            _currentHealthPoint = Mathf.Clamp( value, 0, _maxHealthPoint );
             
             if( _currentHealthPoint <= 0.0f )
             {
-                _bAlive = false;
                 Debug.LogFormat( "GameActor Death" );
                 if( null != _eventDeath )
                 {
                     _eventDeath( this );
                 }
+                _bAlive = false;
             }
         }
     }
@@ -70,12 +78,10 @@ public class Actor : MonoBehaviour
     public bool isAlive
     {
         get { return _bAlive; }
-
-        protected set
-        {
-            _bAlive = value;
-        }
+        protected set { _bAlive = value; }
     }
+
+    public int ShieldCount { get { return _shieldCount; } set { _shieldCount = value; } }
 
     virtual protected void InitActor() { }
     virtual protected void UpdateActor() { }
@@ -102,6 +108,11 @@ public class Actor : MonoBehaviour
     {
         if( _bAlive )
         {
+            if( 0.0f < _powerModeTime )
+            {
+                _powerModeTime -= Time.deltaTime;
+            }
+
             UpdateActor();
         }
     }
@@ -110,14 +121,29 @@ public class Actor : MonoBehaviour
     virtual protected void CallbackDeath( Actor target ) { }
     virtual protected void CallbackDamage() { }
 
+    public void InvokePowerMode()
+    {
+        _powerModeTime = GameConst._POWER_MODE_TIME;
+    }
+
+    public void InvokeShield()
+    {
+        _shieldCount++;
+    }
+
+    public void InvokeHealthRecovery()
+    {
+        CurrentHealthPoint++;
+    }
+
     public void InvokeDamage( float damage )
     {
-        if( _bAlive )
+        if( _bAlive && _powerModeTime <= 0.0f )
         {
-            Debug.LogFormat( "InvokeDamage {0}", damage );
+            //Debug.LogFormat( "InvokeDamage {0}", damage );
             CurrentHealthPoint -= damage;
             CallbackDamage();
-            Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
+            //Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
         }
     }
 

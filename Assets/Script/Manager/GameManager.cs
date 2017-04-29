@@ -66,9 +66,18 @@ public class GameManager : SingletonAwake<GameManager>
         }
     }
 
-    public void InvokeShakeCamera()
+    public void InvokeAttackShakeCamera()
     {
-        iTween.ShakePosition( _camera.gameObject, new Vector3( 0.3f, 0.3f, 0.3f), 0.1f );
+        iTween.ShakePosition( _camera.gameObject, 
+            GameConst._ATTACK_SHAKE_POSITION_VECTOR, 
+            GameConst._ATTACK_SHAKE_TIME );
+    }
+
+    public void InvokeNagativeShakeCamera()
+    {
+        iTween.ShakePosition( _camera.gameObject,
+            GameConst._NAGATIVE_SHAKE_POSITION_VECTOR,
+            GameConst._NAGATIVE_SHAKE_TIME );
     }
 
     public void InvokeMessage( GameMessage message )
@@ -105,11 +114,11 @@ public class GameManager : SingletonAwake<GameManager>
 
     private void CallbackDefaultTimeOver()
     {
-        Debug.Log( "CallbackDefaultTimeOver" );
+        //Debug.Log( "CallbackDefaultTimeOver" );
         _defaultTimer.Init( _defaultTimer.TargetTime - GameConst._NEXT_TIME_GAP );
         CreateDefaultPattern();
     }
-
+     
     private void CallbackRandomTimeOver()
     {
         //_playerActor.InvokeDamage( 1 );
@@ -147,6 +156,14 @@ public class GameManager : SingletonAwake<GameManager>
         }
         
         _nonPlayerGroupList.Add( npg.AddComponent<NonPlayerActorGroup>() );
+    }
+
+    public void InvokeDestroyAll()
+    {
+        for( int i = 0; i < _nonPlayerGroupList.Count; ++i )
+        {
+            _nonPlayerGroupList[i].NonPlayerActorList.ForEach( x => x.InvokeDestroy() );
+        }
     }
 
     private void ClearNonPlayerGroup()
