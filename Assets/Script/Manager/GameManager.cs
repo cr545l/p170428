@@ -213,6 +213,11 @@ public class GameManager : SingletonAwake<GameManager>
         _currentScore += gameScore;
     }
 
+    public int GetScore()
+    {
+        return _currentScore;
+    }
+
     public int GetCombo()
     {
         return _combo;
