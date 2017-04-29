@@ -8,17 +8,22 @@ public class UIHPBar : MonoBehaviour
     [SerializeField]
     private Image _progress = null;
 
-    private Actor _targetActor = null;
+    [SerializeField]
+    private Text _healthPointText = null;
+    [SerializeField]
+    private Text _damageText = null;
+
+    private NonPlayerActor _targetActor = null;
     private RectTransform _canvas = null;
 
     private bool _bInit = false;
 
 	private void Start ()
     {
-        if( Helper.isNull( _progress ) ) return;
+        if( Helper.isNull( _progress, _healthPointText, _damageText ) ) return;
 	}   
 
-    public void Init( Actor target, Canvas canvas )
+    public void Init( NonPlayerActor target, Canvas canvas )
     {
         _targetActor = target;
         _canvas = canvas.GetComponent<RectTransform>();
@@ -38,6 +43,9 @@ public class UIHPBar : MonoBehaviour
                 transform.position = screenPos;
 
                 _progress.transform.localScale = new Vector3( _targetActor.CurrentHealthPoint / _targetActor.MaxHealthPoint, 1, 1 );
+
+                _healthPointText.text = "H : "+_targetActor.CurrentHealthPoint +"/"+_targetActor.MaxHealthPoint;
+                _damageText.text = "D : " + _targetActor.Damage;
             }
             else
             {

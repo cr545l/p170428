@@ -31,9 +31,12 @@ public abstract class NonPlayerActor : Actor
         }
 
         _nonPlayerActorType = UnityEngine.Random.Range(0, 9);
+ 
         InitSelectResource(_nonPlayerActorType);
-        CurrentHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[_nonPlayerActorType];
+        MaxHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[_nonPlayerActorType];
+        CurrentHealthPoint = MaxHealthPoint;
         Damage = GameConst._NONPLAYER_DAMAGE[_nonPlayerActorType];
+
         UIGameScene.Instance.CreateHPBar( this );
     }
 

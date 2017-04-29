@@ -70,7 +70,7 @@ public class Actor : MonoBehaviour
         {
             _maxHealthPoint = value;
 
-            //Debug.LogFormat( "GameActor Max Health Point {0}", _maxHealthPoint );
+            Debug.LogFormat( "GameActor Max Health Point {0}", _maxHealthPoint );
         }
     }
 

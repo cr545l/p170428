@@ -45,10 +45,10 @@ public class UIGameScene : SingletonAwake<UIGameScene>
         _damageText.text = "공격력 : " + GameManager.Instance.PlayerActor.Damage;
     }
 
-    public void CreateHPBar(Actor target)
+    public void CreateHPBar( NonPlayerActor target )
     {
         //UIHPBar instance = Instantiate( _uiHpBar );
-        //instance.transform.SetParent( _canvas.transform, false );
+        //instance.transform.SetParent( _canvas.transform );
         //instance.transform.SetSiblingIndex( 0 );
         //
         //instance.Init( target, _canvas );
