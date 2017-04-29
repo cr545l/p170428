@@ -36,8 +36,6 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
         _uiPopupPause.gameObject.SetActive( false );
         _uiPopupResult.gameObject.SetActive( false );
-
-        _scoreText.text = "점수 0";
     }
     
     private void Update ()
@@ -45,6 +43,7 @@ public class UIGameScene : SingletonAwake<UIGameScene>
         _timeText.text = GameManager.Instance.Timer.CurrentTime.ToString();
         _healthPointText.text = "체력 : " + GameManager.Instance.PlayerActor.CurrentHealthPoint + "/" + GameManager.Instance.PlayerActor.MaxHealthPoint;
         _damageText.text = "공격력 : " + GameManager.Instance.PlayerActor.Damage;
+        _scoreText.text = "점수 " + GameManager.Instance.GetScore();
     }
 
     public void CreateHPBar( NonPlayerActor target )
