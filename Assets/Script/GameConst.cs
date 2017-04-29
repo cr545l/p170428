@@ -7,11 +7,13 @@ public static class GameConst
     static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 3.0f, 4.0f };
     static public readonly Vector3 _ATTACK_SHAKE_POSITION_VECTOR = new Vector3( 0.2f, 0.2f, 0.2f );
     static public readonly Vector3 _NAGATIVE_SHAKE_POSITION_VECTOR = new Vector3( 0.5f, 0.5f, 0.5f );
+    static public readonly float[] _NONPLAYER_HEALTH_POINT = new float[] { 5.0f, 3.0f, 1.0f, 1.0f, 3.0f, 1.0f, 1.0f, 1.0f, 2.0f };
+    static public readonly float[] _NONPLAYER_DAMAGE = new float[] { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 2.0f, 1.0f };
 
     public const float _DEFAULT_PLAYER_DAMAGE = 1.0f;
     public const float _DEFAULT_NONPLAYER_DAMAGE = 1.0f;
     public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 30.0f;
-    public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 3.0f;
+    public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 5.0f;
 
     public const float _DEFAULT_ACTOR_SPEED = 0.05f;
     public const float _DEFAULT_MISSILE_TIME = 3f;
