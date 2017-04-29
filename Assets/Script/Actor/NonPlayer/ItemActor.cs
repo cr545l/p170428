@@ -51,11 +51,13 @@ public class ItemActor : NonPlayerActor
         switch (value)
         {
             case 0:
-                GameManager.Instance.PlayerActor.MaxHealthPoint++;
+                GameManager.Instance.PlayerActor.SetMaxHealthPoint( GameManager.Instance.PlayerActor.MaxHealthPoint + 1, true );
                 break;
+
             case 1:
                 GameManager.Instance.PlayerActor.InvokeDamageUpdate();
                 break;
+
             case 2:
                 GameManager.Instance.PlayerActor.InvokePowerModeDurationUpdate();
                 break;
@@ -96,7 +98,7 @@ public class ItemActor : NonPlayerActor
         {
             case 0:
                 Debug.Log( "최대체력 감소" );
-                GameManager.Instance.PlayerActor.MaxHealthPoint--;
+                GameManager.Instance.PlayerActor.SetMaxHealthPoint( GameManager.Instance.PlayerActor.MaxHealthPoint - 1, false );
                 break;
 
             case 1:

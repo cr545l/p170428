@@ -28,7 +28,7 @@ public static class GameConst
     public const float _NAGATIVE_SHAKE_TIME = 5.0f;
 
     public const float _NAGATIVE_COVER_SPEED = 0.05f;
-    public const float _NAGATIVE_COVER_TIME = 2.0f;
+    public const float _NAGATIVE_COVER_TIME = 1.0f;
 
     public const float _POWER_MODE_TIME = 2.0f;
 

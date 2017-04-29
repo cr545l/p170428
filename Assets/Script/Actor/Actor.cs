@@ -66,7 +66,7 @@ public class Actor : MonoBehaviour
     {
         get { return _maxHealthPoint; }
 
-        set
+        protected set
         {
             _maxHealthPoint = value;
 
@@ -135,6 +135,16 @@ public class Actor : MonoBehaviour
     public void InvokeHealthRecovery()
     {
         CurrentHealthPoint++;
+    }
+
+    public void SetMaxHealthPoint( float value, bool bMaxCurrentHealthPoint )
+    {
+        MaxHealthPoint = value;
+
+        if( bMaxCurrentHealthPoint )
+        {
+            _currentHealthPoint = MaxHealthPoint;
+        }
     }
 
     public void InvokeDamageUpdate()
