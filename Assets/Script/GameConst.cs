@@ -15,4 +15,18 @@ public static class GameConst
     public const string _TITLE_SCENE = "TitleScene";
     public const string _UI_GAME_SCENE = "UIGameScene";
     public const string _UI_TITLE_SCENE = "UITitleScene";
+    
+    static public readonly string[] _RANDOM_MESSAGES = new string[]
+    {
+        "테스트 문구0",
+        "테스트 문구1",
+        "테스트 문구2",
+        "테스트 문구3",
+        "테스트 문구4",
+        "테스트 문구5",
+        "테스트 문구6",
+        "테스트 문구7",
+        "테스트 문구8",
+        "테스트 문구9",
+    };
 }

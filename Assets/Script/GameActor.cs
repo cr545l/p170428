@@ -59,6 +59,7 @@ public class GameActor : MonoBehaviour
 	private void Start ()
     {
         InitActor();
+        GameManager.Instance._eventGameActor += CallbackMessage;
         _eventDeath += CallbackDeath;
     }
 
@@ -69,11 +70,13 @@ public class GameActor : MonoBehaviour
 
     virtual protected void CallbackMessage( GameMessage message ) { }
     virtual protected void CallbackDeath( GameActor target ) { }
+    virtual protected void CallbackDamage() { }
 
     public void InvokeDamage( float damage )
     {
         Debug.LogFormat( "InvokeDamage {0}", damage );
         CurrentHealthPoint -= damage;
+        CallbackDamage();
         Debug.LogFormat( "InvokeDamage {0}, CurrentHealthPoint {1}", damage, _currentHealthPoint );
     }
 

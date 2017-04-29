@@ -42,6 +42,6 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
     public void ShowResult( ResultData resultData )
     {
-        _uiPopupResult.gameObject.SetActive( true );
+        _uiPopupResult.Show();
     }
 }

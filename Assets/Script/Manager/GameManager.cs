@@ -87,6 +87,8 @@ public class GameManager : SingletonAwake<GameManager>
 
     private void CallbackRandomTimeOver()
     {
+        _playerActor.InvokeDamage( 1 );
+
         _randomTimer.InitRandom();
         CreateNonPlayerActor();
     }
@@ -126,9 +128,13 @@ public class GameManager : SingletonAwake<GameManager>
     private void CallbackPlayerDeath( GameActor target )
     {
         _gameState = eGameState.Ended;
-        UIGameScene.Instance.ShowResult( new ResultData()
-        {
-            _score = _currentScore,
-        } );
+
+        StartCoroutine( Helper.Wait( 1, () =>
+          {
+              UIGameScene.Instance.ShowResult( new ResultData()
+              {
+                  _score = _currentScore,
+              } );
+          } ) );
     }
 }
