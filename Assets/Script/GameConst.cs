@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GameConst
 {
-    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f };
+    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 1.5f, 2.0f };
 
     static public readonly float[] _NONPLAYER_HEALTH_POINT = new float[] {
         5.0f, 3.0f, 1.0f, // 빨강, 회색, 파랑
@@ -32,7 +32,10 @@ public static class GameConst
     public const float _DEFAULT_PLAYER_MAX_HEALTH_POINT = 10.0f; // 기본체력
     public const float _DEFAULT_NON_PLAYER_MAX_HEALTH_POINT = 5.0f;
 
-    public const float _DEFAULT_ACTOR_SPEED = 0.1f;
+    public const float _DEFAULT_ACTOR_SPEED = 0.1f; // 액터 이동속도
+    public const float _DEFAULT_ACTOR_SPEED_DEPTH = 0.0005f;
+    public const float _DEFAULT_ACTOR_SPEED_SLOW_UPGRADE = 0.007f;
+
     public const float _DEFAULT_MISSILE_TIME = 3f;
     public const float _DEFAULT_MISSILE_SPEED = 6.0f;
 
@@ -46,7 +49,7 @@ public static class GameConst
     public const float _POWER_MODE_TIME = 2.0f;
 
     public const float _DEFAULT_TIME = 0.5f;
-    public const float _NEXT_TIME_GAP = 0.001f;
+    public const float _NEXT_TIME_GAP = 0.005f;
 
     public const int _DEFAULT_MAXIMUM_LAUNCH_MISSILE = 10; // 기본 미사일 개수
 

@@ -31,6 +31,11 @@ public class UIPopupResult : MonoBehaviour
 
     private void VisibleRank( int score )
     {
+        for( int i = 0; i < _ranks.Length; ++i )
+        {
+            _ranks[i].gameObject.SetActive( false );
+        }
+
         if( 25000 < score )
         {
             _ranks[6].gameObject.SetActive( true );

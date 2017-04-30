@@ -57,6 +57,7 @@ public class GameManager : SingletonAwake<GameManager>
     private int _currentScore = 0;
     private int _combo = 0;
     private string _currentPatton = string.Empty;
+    private float _currentActorSpeed = GameConst._DEFAULT_ACTOR_SPEED;
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
     public GameTimer Timer { get { return _randomTimer; } }
@@ -67,6 +68,7 @@ public class GameManager : SingletonAwake<GameManager>
     public Camera Camera { get { return _camera; } }
     public ParticleSystem[] BoostParticleSystems { get { return _boostParticleSystems; } }
     public string CurrentPatton { get { return _currentPatton; } }
+    public float CurrentActorSpeed { get { return _currentActorSpeed; } set { _currentActorSpeed = value; } }
 
     private void Start()
     {
@@ -152,6 +154,7 @@ public class GameManager : SingletonAwake<GameManager>
         _camera.transform.position = _cameraOriginalPosition;
         _gameState = eGameState.Playing;
 
+        _currentActorSpeed = GameConst._DEFAULT_ACTOR_SPEED;
         _currentScore = 0;
 
         _playerActor.Init();
@@ -170,10 +173,12 @@ public class GameManager : SingletonAwake<GameManager>
     {
         Time.timeScale = enable ? 0.0f : 1.0f;
     }
-
+    
     private void CallbackDefaultTimeOver()
     {
         //Debug.Log( "CallbackDefaultTimeOver" );
+
+        _currentActorSpeed += GameConst._DEFAULT_ACTOR_SPEED_DEPTH;
         _defaultTimer.Init( _defaultTimer.TargetTime - GameConst._NEXT_TIME_GAP );
         CreateDefaultPattern();
     }
