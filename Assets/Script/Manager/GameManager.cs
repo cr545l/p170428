@@ -49,6 +49,12 @@ public class GameManager : SingletonAwake<GameManager>
     private GameTimer _defaultTimer = new GameTimer();
     private GameTimer _randomTimer = new GameTimer();
 
+    private GameTimer _npUpgradeAt10 = new GameTimer();
+    private GameTimer _npUpgradeAt20 = new GameTimer();
+    private float _npNormalUpgradeHp = 0;
+    private float _npNormalUpgradeAtk = 0;
+    private float _npPositiveUpgradeHp = 0;
+
     private List<NonPlayerActorGroup> _nonPlayerGroupList = new List<NonPlayerActorGroup>();
 
     private Vector3 _cameraOriginalPosition = Vector3.zero;
@@ -60,6 +66,10 @@ public class GameManager : SingletonAwake<GameManager>
 
     public PlayerActor PlayerActor { get { return _playerActor; } }
     public GameTimer Timer { get { return _randomTimer; } }
+
+    public float NpNormalUpgradeHp { get { return _npNormalUpgradeHp; } }
+    public float NpNormalUpgradeAtk { get { return _npNormalUpgradeAtk; } }
+    public float NpPositiveUpgradeHp { get { return _npPositiveUpgradeHp; } }
 
     public Sprite[] NonPlayerSprites { get { return _nonPlayerSprites; } }
     public Animator[] NonPlayerDeathAnimators { get { return _nonPlayerDeathAnimators; } }
@@ -76,6 +86,9 @@ public class GameManager : SingletonAwake<GameManager>
 
         _defaultTimer._eventTimeOver += CallbackDefaultTimeOver;
         _randomTimer._eventTimeOver += CallbackRandomTimeOver;
+
+        _npUpgradeAt10._eventTimeOver += CallbackNpUpdate10;
+        _npUpgradeAt20._eventTimeOver += CallbackNpUpdate20;
 
         _playerActor._eventDeath += CallbackPlayerDeath;
 
@@ -157,6 +170,8 @@ public class GameManager : SingletonAwake<GameManager>
         _playerActor.Init();
         _defaultTimer.Init( GameConst._DEFAULT_TIME );
         _randomTimer.InitRandom();
+        _npUpgradeAt10.Init(GameConst._NONPLAYER_UPGRADE_TIME[0]);
+        _npUpgradeAt20.Init(GameConst._NONPLAYER_UPGRADE_TIME[1]);
         ClearNonPlayerGroup();
     }
 
@@ -182,6 +197,17 @@ public class GameManager : SingletonAwake<GameManager>
     {
         _randomTimer.InitRandom();
         CreateNonPlayerActor();
+    }
+
+    private void CallbackNpUpdate10()
+    {
+        _npNormalUpgradeHp++;
+    }
+
+    private void CallbackNpUpdate20()
+    {
+        _npNormalUpgradeAtk++;
+        _npPositiveUpgradeHp *= 2;
     }
 
     private void CreateNonPlayerActor()
