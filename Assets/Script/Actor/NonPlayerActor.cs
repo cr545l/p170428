@@ -35,7 +35,8 @@ public abstract class NonPlayerActor : Actor
 
         _nonPlayerActorType = RandomSelect();
         InitSelectResource( _nonPlayerActorType );
-        MaxHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[_nonPlayerActorType];
+
+        MaxHealthPoint = GetNextHealPoint(GameConst._NONPLAYER_HEALTH_POINT[_nonPlayerActorType]);
         CurrentHealthPoint = MaxHealthPoint;
         Damage = GameConst._NONPLAYER_DAMAGE[_nonPlayerActorType];
 
@@ -43,6 +44,13 @@ public abstract class NonPlayerActor : Actor
         _uiHpBar.gameObject.SetActive( false );
     }
     public bool isNagative { get { return _nonPlayerActorType == 3; } }
+
+    private float GetNextHealPoint(float value)
+    {
+        float result = value;
+
+        return result;
+    }
 
     private int RandomSelect()
     {

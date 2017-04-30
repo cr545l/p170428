@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GameConst
 {
-    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f, 2.0f, 2.0f, 3.0f };
+    static public readonly float[] _DEFAULT_RANDOM_TIMES = new float[] { 1.0f, 2.0f };
 
     static public readonly float[] _NONPLAYER_HEALTH_POINT = new float[] {
         5.0f, 3.0f, 1.0f, // 빨강, 회색, 파랑

@@ -163,15 +163,15 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void SetMaxHealthPoint( float value, bool bMaxCurrentHealthPoint )
-    {
-        MaxHealthPoint = value;
-
-        if( bMaxCurrentHealthPoint )
-        {
-            CurrentHealthPoint = MaxHealthPoint;
-        }
-    }
+    //public void SetMaxHealthPoint( float value, bool bMaxCurrentHealthPoint )
+    //{
+    //    MaxHealthPoint = value;
+    //
+    //    if( bMaxCurrentHealthPoint )
+    //    {
+    //        CurrentHealthPoint = MaxHealthPoint;
+    //    }
+    //}
 
     protected void InvokeMessage( GameActorMessage message )
     {
