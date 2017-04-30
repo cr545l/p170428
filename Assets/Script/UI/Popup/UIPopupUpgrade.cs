@@ -7,7 +7,9 @@ public class UIPopupUpgrade : MonoBehaviour
     public void InvincibilityButtonClick()
     {
         print("invincibility");
-        GameManager.Instance.PlayerActor.InvokePowerModeDurationUpdate();
+        //GameManager.Instance.PlayerActor.InvokePowerModeDurationUpdate();
+
+        GameManager.Instance.CurrentActorSpeed -= GameConst._DEFAULT_ACTOR_SPEED_SLOW_UPGRADE;
         GameManager.Instance.InvokePause(false);
         gameObject.SetActive(false);
     }

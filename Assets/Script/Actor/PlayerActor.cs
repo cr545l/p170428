@@ -32,6 +32,8 @@ public class PlayerActor : Actor
 
     public void InitPlayer()
     {
+        MissileDestroy();
+
         Damage = GameConst._DEFAULT_PLAYER_DAMAGE;
 
         _deathAnimator.gameObject.SetActive( false );
@@ -88,6 +90,7 @@ public class PlayerActor : Actor
             _spriteRenderer.sprite = _sprites[0];
         }
     }
+
     private void MissileDestroy()
     {
         _currentMissileList.ForEach( x => x.InvokeDestroy() );
