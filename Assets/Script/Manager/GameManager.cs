@@ -169,6 +169,9 @@ public class GameManager : SingletonAwake<GameManager>
 
         _currentActorSpeed = GameConst._DEFAULT_ACTOR_SPEED;
         _currentScore = 0;
+        _npNormalUpgradeHp = 0;
+        _npNormalUpgradeAtk = 0;
+        _npPositiveUpgradeHp = 1;
 
         _playerActor.Init();
         _defaultTimer.Init( GameConst._DEFAULT_TIME );
