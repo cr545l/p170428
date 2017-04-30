@@ -30,7 +30,7 @@ public class StraightMissile : Missile
     {
         if( _bLaunch )
         {
-            transform.position += _moveVector;
+            transform.position += _moveVector * Time.deltaTime;
 
             if( isOutDisplay() )
             {
