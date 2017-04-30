@@ -18,6 +18,8 @@ public static class GameConst
         1.0f, 2.0f, 1.0f,
     };
 
+    static public readonly float[] _NONPLAYER_UPGRADE_TIME = new float[] { 10,0f, 20.0f };
+
     static public readonly int[] _NONPLAYER_SCORE = new int[] { 30, 20, 10, -100, 0, 30, 10, 30, 30 };
 
     static public readonly Vector3 _ATTACK_SHAKE_POSITION_VECTOR = new Vector3( 0.2f, 0.2f, 0.2f );

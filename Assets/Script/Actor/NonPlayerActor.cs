@@ -36,8 +36,35 @@ public abstract class NonPlayerActor : Actor
         _nonPlayerActorType = RandomSelect();
         InitSelectResource( _nonPlayerActorType );
         MaxHealthPoint = GameConst._NONPLAYER_HEALTH_POINT[_nonPlayerActorType];
+        switch (_nonPlayerActorType)
+        {
+            case GameConst._NONPLAYER_TYPE_METEORITE1:
+            case GameConst._NONPLAYER_TYPE_METEORITE2:
+            case GameConst._NONPLAYER_TYPE_METEORITE3:
+            case GameConst._NONPLAYER_TYPE_UFO1:
+            case GameConst._NONPLAYER_TYPE_UFO2:
+            case GameConst._NONPLAYER_TYPE_UFO3:
+                MaxHealthPoint += GameManager.Instance.NpNormalUpgradeHp;
+                break;
+            case GameConst._NONPLAYER_TYPE_METEORITE5:
+            case GameConst._NONPLAYER_TYPE_METEORITE6:
+                MaxHealthPoint *= GameManager.Instance.NpPositiveUpgradeHp;
+                break;
+
+        }
         CurrentHealthPoint = MaxHealthPoint;
         Damage = GameConst._NONPLAYER_DAMAGE[_nonPlayerActorType];
+        switch(_nonPlayerActorType)
+        {
+            case GameConst._NONPLAYER_TYPE_METEORITE1:
+            case GameConst._NONPLAYER_TYPE_METEORITE2:
+            case GameConst._NONPLAYER_TYPE_METEORITE3:
+            case GameConst._NONPLAYER_TYPE_UFO1:
+            case GameConst._NONPLAYER_TYPE_UFO2:
+            case GameConst._NONPLAYER_TYPE_UFO3:
+                Damage += GameManager.Instance.NpNormalUpgradeAtk;
+                break;
+        }
 
         _uiHpBar = UIGameScene.Instance.CreateHPBar( this );
         _uiHpBar.gameObject.SetActive( false );
