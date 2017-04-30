@@ -7,6 +7,8 @@ public class TitleScene : MonoBehaviour {
     
 	private void Start ()
     {
+        Application.targetFrameRate = 60;
+
         SceneManager.LoadScene( GameConst._UI_TITLE_SCENE, LoadSceneMode.Additive );
 	}
 

@@ -265,6 +265,7 @@ public class GameManager : SingletonAwake<GameManager>
         StartCoroutine( Helper.Wait( GameConst._GAME_OVER_CAMERA_MOVE_TIME + 
                                     GameConst._GAME_OVER_RESULT_POPUP, () =>
           {
+              GameAnalyst.Instance.SaveScore( _currentScore );
               // PlayerPrefs.SetInt(PlayerPrefsKey._HIGH_SCORE, _score);
               UIGameScene.Instance.ShowResult( new ResultData()
               {

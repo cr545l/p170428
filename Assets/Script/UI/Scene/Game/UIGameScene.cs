@@ -15,6 +15,8 @@ public class UIGameScene : SingletonAwake<UIGameScene>
     [SerializeField]
     private Text _scoreText = null;
     [SerializeField]
+    private Text _besetScoreText = null;
+    [SerializeField]
     private Text _timeText = null;
     [SerializeField]
     private Text _healthPointText = null;
@@ -38,7 +40,7 @@ public class UIGameScene : SingletonAwake<UIGameScene>
 
     private void Start ()
     {
-        if( Helper.isNull( _scoreText, _timeText, _playingText,
+        if( Helper.isNull( _scoreText, _besetScoreText, _timeText, _playingText,
             _uiHpBar, _uiNagativeCover, 
             _uiPopupPause, _uiPopupResult, _image ) ) return;
 
@@ -54,6 +56,7 @@ public class UIGameScene : SingletonAwake<UIGameScene>
         _healthPointText.text = GameManager.Instance.PlayerActor.CurrentHealthPoint.ToString();
         _damageText.text = "POWER " + GameManager.Instance.PlayerActor.Damage;
         _scoreText.text = "SCORE " + GameManager.Instance.GetScore();
+        _besetScoreText.text = "BEST " + GameAnalyst.Instance.BestScore;
         _playingText.text = "PLAYING " + GameManager.Instance.CurrentPatton;
         _image.fillAmount = GameManager.Instance.PlayerActor.CurrentHealthPoint / GameManager.Instance.PlayerActor.MaxHealthPoint;
     }

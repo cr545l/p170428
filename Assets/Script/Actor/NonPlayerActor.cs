@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 
 public abstract class NonPlayerActor : Actor
@@ -199,7 +199,7 @@ public abstract class NonPlayerActor : Actor
 
             _audioSource.Play();
 
-            StartCoroutine( Helper.Wait( _deathAnimator.GetClip().length, () =>
+            StartCoroutine( Helper.Wait( _deathAnimator.GetAnimatorLength(), () =>
             {
                 Destroy( gameObject );
             } ) );

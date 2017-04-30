@@ -33,7 +33,7 @@ public class Missile : MonoBehaviour
         DestroyAnimation.gameObject.SetActive( true );
         DestroyAnimation.Play( 0 );
 
-        StartCoroutine( Helper.Wait( DestroyAnimation.GetClip().length, () =>
+        StartCoroutine( Helper.Wait( DestroyAnimation.GetAnimatorLength(), () =>
         {
             if( null != _eventDestroy )
             {

@@ -39,7 +39,7 @@ public static class GameConst
     public const float _DEFAULT_ACTOR_SPEED_SLOW_UPGRADE = 0.007f;
 
     public const float _DEFAULT_MISSILE_TIME = 3f;
-    public const float _DEFAULT_MISSILE_SPEED = 6.0f;
+    public const float _DEFAULT_MISSILE_SPEED = 1.0f; // 미사일 속도
 
     public const float _ATTACK_SHAKE_TIME = 0.2f;
     public const float _NAGATIVE_SHAKE_TIME = 5.0f;
@@ -88,5 +88,5 @@ public static class GameConst
 
 public static class PlayerPrefsKey
 {
-    public const string _HIGH_SCORE = "_HIGH_SCORE";
+    public const string _BEST_SCORE = "_HIGH_SCORE";
 }
